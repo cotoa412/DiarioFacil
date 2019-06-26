@@ -11,8 +11,8 @@ package com.ulatina.diarioFacil;
  */
 public abstract class Usuario {
     
-    private String nombreUsuario = "";
-    private String contrasenna = "";
+    protected String nombreUsuario = "";
+    protected String contrasenna = "";
 
     public Usuario() {
         

@@ -19,14 +19,19 @@ public class Administrador extends Usuario {
     
     public Administrador(){
     
+        this.comportamientoUsuario = new MenuAdmin();
+//Como es administrador se instancia la variable de tipo iMenu como MenuAdmin por medio del super 
+ 
+        
     }
     
-    public Administrador(String nombreUsuario,String contrasenna,int cedulaAdmin,String nombreAdmin,String correoAdmin){
+    public Administrador(String nombreUsuario,String contrasenna ,int cedulaAdmin,String nombreAdmin,String correoAdmin){
     
         super(nombreUsuario,contrasenna);
         this.cedulaAdmin = cedulaAdmin;
         this.nombreAdmin = nombreAdmin;
         this.correoAdmin = correoAdmin;
+        this.comportamientoUsuario = new MenuAdmin();//Aqui sucede lo mismo pero con el constructor sobrecargado.
         
     }
 

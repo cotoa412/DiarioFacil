@@ -13,6 +13,7 @@ public abstract class Usuario {
     
     protected String nombreUsuario = "";
     protected String contrasenna = "";
+    protected iMenu comportamientoUsuario; // Creo una variable de tipo iMenu(Interface).
 
     public Usuario() {
         
@@ -39,6 +40,16 @@ public abstract class Usuario {
 
     public void setContrasenna(String contrasenna) {
         this.contrasenna = contrasenna;
+    }
+    
+    //Hago un setter para asignar que tipo de interface voy a instanciar.
+    public void setComportamientoUsuario(iMenu comportamientoUsuario){
+        this.comportamientoUsuario = comportamientoUsuario; 
+    }
+    
+    //Este metodo llama a desplegarMenu(Metodo de la interface) de la variable comportamientoUsuario segun como se instancie. 
+    public void mostrarMenu(){
+        this.comportamientoUsuario.desplegarMenu();
     }
     
     public String toString(){

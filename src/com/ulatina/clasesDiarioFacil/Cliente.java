@@ -17,17 +17,20 @@ public class Cliente extends Usuario{
     private String tipoCliente = "";
     
     public Cliente(){
+        
+        this.comportamientoUsuario = new MenuCliente();//Como es cliente se instancia la variable de tipo iMenu como MenuCliente por medio del super 
     
     }
     
     public Cliente(String nombreUsuario,String contrasenna,int cedulaCliente,String nombreCliente,String correoCliente){
     
         super(nombreUsuario,contrasenna);
+        this.comportamientoUsuario = new MenuCliente();//Aqui sucede lo mismo pero con el constructor sobrecargado.
         this.cedulaCliente = cedulaCliente;
         this.nombreCliente = nombreCliente;
         this.correo = correoCliente;
         this.tipoCliente = "Básico";
-       
+        
     }
 
     public int getCedulaCliente() {
@@ -60,6 +63,12 @@ public class Cliente extends Usuario{
 
     public void setTipoCliente(String tipoCliente) {
         this.tipoCliente = tipoCliente;
+    }
+    
+    public void bienvenidaUsuario(){
+        System.out.println("Bienvenido " + this.getNombreCliente());
+        System.out.println("Elija una opcion.\n");
+        this.mostrarMenu();
     }
     
     public String toString(){

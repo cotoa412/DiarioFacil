@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface InterfaceDAO {
     public List<Object> selectAll();
-    public void insert();
-    public void update();
-    public void delete();
+    public void insert(Object obj);
+    public void update(Object obj);
+    public void delete(int id);
     public Object lookForId(int id);
     
 }

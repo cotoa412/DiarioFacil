@@ -22,7 +22,7 @@ public class Tester {
        Cliente cliente = new Cliente("anthony3064","123456",604510033,"anthony flores","anohyn@gmaul.com");
         //Cliente cliente = new Cliente();
         if (cliente.getNombreUsuario().equalsIgnoreCase("anthony3064")) {
-            cliente.bienvenidaUsuario();
+            
         }
         
         

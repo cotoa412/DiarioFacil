@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ulatina.clasesDiarioFacil;
-
+package com.ulatina.clasesDiarioFacil; 
 /**
  *
  * @author Personal
@@ -65,18 +64,10 @@ public class Cliente extends Usuario{
         this.tipoCliente = tipoCliente;
     }
     
-    public void bienvenidaUsuario(){
-        System.out.println("Bienvenido " + this.getNombreCliente());
-        System.out.println("Elija una opcion.\n");
-        this.mostrarMenu();
-    }
-    
     public String toString(){
     
         return this.getCedulaCliente() + " " + this.getNombreCliente() + " " + this.getCorreo()+ " " + this.getTipoCliente();
         
     }
-    
-    
     
 }

@@ -61,7 +61,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
     }
 
     @Override
-    public void insert() {
+    public void insert(Object obj) {
         Statement stmt = null;
         try {
             //STEP 3: Execute a querey
@@ -100,7 +100,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
     }
 
     @Override
-    public void update() {
+    public void update(Object obj) {
         Statement stmt = null;
         ResultSet rs = null;
         try {
@@ -160,7 +160,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
     }
 
     @Override
-    public void delete() {
+    public void delete(int id) {
         Statement stmt = null;
         try {
             //STEP 3: Execute a querey

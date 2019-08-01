@@ -102,5 +102,6 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
     public void delete(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

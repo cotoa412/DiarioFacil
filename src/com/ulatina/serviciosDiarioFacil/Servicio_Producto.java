@@ -29,6 +29,8 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
         List<Object> listaRetorno = new ArrayList<Object>();
         Categoria categoria = new Categoria();
         Servicio_Categoria s = new Servicio_Categoria();
+      
+        DateFormat formato = new SimpleDateFormat("YY-MM-dd");
         try{
             this.conectar();
             
@@ -51,7 +53,9 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
                    }
                }
                
-               listaRetorno.add(new Producto(id,nom, (java.sql.Date) fecha,valor,cantidad,categoria));
+               
+               
+               listaRetorno.add(new Producto(id,nom,fecha,valor,cantidad,categoria));
              
            }
             
@@ -122,7 +126,7 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
       
         }
     }
-
+    
     @Override
     public void update(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -132,5 +136,7 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
     public void delete(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
+

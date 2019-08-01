@@ -15,7 +15,6 @@ public interface InterfaceDAO {
     public List<Object> selectAll();
     public void insert(Object obj);
     public void update(Object obj);
-    public void delete(int id);
-    public Object lookForId(int id);
+    public void delete(Object obj);
     
 }

@@ -11,6 +11,7 @@ package com.ulatina.clasesDiarioFacil;
  */
 public abstract class Usuario {
     
+    protected int idUsuario;
     protected String nombreUsuario = "";
     protected String contrasenna = "";
     protected iMenu comportamientoUsuario; // Creo una variable de tipo iMenu(Interface).
@@ -51,6 +52,16 @@ public abstract class Usuario {
     public void mostrarMenu(){
         this.comportamientoUsuario.desplegarMenu();
     }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
     
     public String toString(){
     

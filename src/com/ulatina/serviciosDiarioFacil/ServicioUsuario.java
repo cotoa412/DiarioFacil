@@ -5,7 +5,6 @@
  */
 package com.ulatina.serviciosDiarioFacil;
 
-import com.ulatina.clasesDiarioFacil.Administrador;
 import com.ulatina.clasesDiarioFacil.Cliente;
 import com.ulatina.clasesDiarioFacil.Usuario;
 import static com.ulatina.serviciosDiarioFacil.Servicio.conn;
@@ -14,38 +13,40 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
- * @author Alejandro
+ * @author Laboratorio
  */
-public class ServicioAdministrador extends Servicio implements InterfaceDAO {
+public class ServicioUsuario extends Servicio implements InterfaceDAO {
+
     @Override
     public List<Object> selectAll() {
         ResultSet rs = null;
+        StringBuffer s = new StringBuffer();
         Statement stmt = null;
-        List<Object> aList = new ArrayList<>();
+        List<Object> uList = new ArrayList<>();
         try {
             //STEP 3: Execute a querey
             super.conectar();
             System.out.println("Conectado a la base, creando un statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT cedula, nombre, contrasenna, nombreUsuario, correo FROM administrador;";
+            sql = "SELECT * FROM usuario;";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                String nombreAdministrador = rs.getString("nombre");
-                String contrasenna = rs.getString("contrasenna");
-                int cedulaAdministrador = rs.getInt("cedula");
+                int idUsuario = rs.getInt("idUsuario");
                 String nombreUsuario = rs.getString("nombreUsuario");
-                String correoAdministrador = rs.getString("correo");
+                String contrasenna = rs.getString("contrasenna");
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
-                Administrador a = new Administrador(nombreUsuario, contrasenna, cedulaAdministrador, nombreAdministrador, correoAdministrador);
-                aList.add(a);
+                Usuario usuario = new Cliente();
+               usuario.setIdUsuario(idUsuario);
+               usuario.setNombreUsuario(nombreUsuario);
+               usuario.setContrasenna(contrasenna);
+               uList.add(usuario);
 
             }
         } catch (Exception e) {
@@ -59,49 +60,19 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
                 ex.printStackTrace();
             }
         }
-        return aList;
-
+        return uList;        
     }
 
     @Override
-    public void insert(Object obj) { //primero metemos el id de serviciousuario en cliente y despues verificamos que sean el mismo y despues el insert.
-        ServicioUsuario u = new ServicioUsuario();
-
+    public void insert(Object obj) {
         Statement stmt = null;
-
-        u.insert(obj);
-
-        int idDelUsuario = 0;
-
-        for (Object obj2 : u.selectAll()) {
-            if (((Administrador) obj2).getNombreUsuario().equals(((Administrador) obj).getNombreUsuario()) && ((Administrador) obj2).getContrasenna().equals(((Administrador) obj).getContrasenna())) {
-                idDelUsuario = ((Administrador) obj2).getIdUsuario();
-            }
-        }
-
         try {
+            //STEP 3: Execute a querey
             super.conectar();
             System.out.println("Conectado a la base, creando un statement...");
             stmt = conn.createStatement();
-
-//            String nombre;
-//            String correo;
-//            String usuario;
-//            String contra;
-//            Scanner sc = new Scanner(System.in);
-//            System.out.println("Digite la cedula para insertar en la base de datos:");
-//            id = sc.nextInt();
-//            System.out.println("Ingrese el nombre para insertar en la base de datos:");
-//            nombre = sc.next();
-//            System.out.println("Ingrese el correo para insertar en la base de datos:");
-//            correo = sc.next();
-//            System.out.println("Ingrese el nombre de usuario para insertar en la base de datos:");
-//            usuario = sc.next();
-//            System.out.println("Ingrese la contraseña para insertar en la base de datos:");
-//            contra = sc.next();
-            stmt.executeUpdate("insert into administrador (cedulaAdmin, nombreAdmin, correoAdmin, usuario) values ('" + (((Administrador) obj).getCedulaAdmin()) + "','" + (((Administrador) obj).getNombreAdmin()) + "','" + (((Administrador) obj).getCorreoAdmin()) + "','" + idDelUsuario + "')");
-//            System.out.println("Los valores han sido ingresados en la base de datos.");
-
+              stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
+              System.out.println("Usuario ingresado correctamente");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");
@@ -112,7 +83,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
+        }        
     }
 
     @Override
@@ -123,8 +94,8 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
             super.conectar();
             System.out.println("Conectado a la base, creando un statement...");
             stmt = conn.createStatement();
-            stmt.executeUpdate("update administrador set nombreAdmin = ('" + (((Administrador)obj).getNombreAdmin()) +"'), cedulaAdmin = ('" + (((Administrador)obj).getCedulaAdmin()) +"'), correoAdmin = ('" + (((Administrador)obj).getCorreoAdmin()) +"')");
-              System.out.println("Admin actualizado correctamente");
+            stmt.executeUpdate("update usuario set nombreUsuario = ('" + (((Usuario)obj).getNombreUsuario()) +"'), contrasenna = ('" + (((Usuario)obj).getContrasenna()) +"')");
+              System.out.println("Usuario actualizado correctamente");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");
@@ -146,8 +117,8 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
             super.conectar();
             System.out.println("Conectado a la base, creando un statement...");
             stmt = conn.createStatement();
-            stmt.executeUpdate("delete from administrador where usuario = ('" + (((Administrador)obj).getUsuario()) + "')");
-            System.out.println("El admin con el id " + (((Administrador)obj).getUsuario()) + " ha sido removido de la base de datos.");
+            stmt.executeUpdate("delete from usuario where idUsuario = ('" + (((Usuario)obj).getIdUsuario()) + "')");
+            System.out.println("El usuario con el id " + (((Usuario)obj).getIdUsuario()) + " ha sido removido de la base de datos.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");
@@ -160,6 +131,5 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
             }
         }
     }
-
-}
     
+}

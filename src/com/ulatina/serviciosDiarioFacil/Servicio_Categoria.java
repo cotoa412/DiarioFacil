@@ -99,12 +99,7 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
     }
 
     @Override
-    public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object lookForId(int id) {
+    public void delete(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

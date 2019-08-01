@@ -14,6 +14,7 @@ public class Cliente extends Usuario{
     private String nombreCliente = "";
     private String correo = "";
     private String tipoCliente = "";
+    private int usuario = 0 ;
     
     public Cliente(){
         
@@ -62,6 +63,14 @@ public class Cliente extends Usuario{
 
     public void setTipoCliente(String tipoCliente) {
         this.tipoCliente = tipoCliente;
+    }
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
     }
     
     public String toString(){

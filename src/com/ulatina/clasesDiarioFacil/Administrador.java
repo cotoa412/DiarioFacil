@@ -15,6 +15,7 @@ public class Administrador extends Usuario {
     private int cedulaAdmin = 0;
     private String nombreAdmin = "";
     private String correoAdmin = "";
+    private int usuario = 0;
     
     
     public Administrador(){
@@ -58,5 +59,15 @@ public class Administrador extends Usuario {
     public void setCorreoAdmin(String correoAdmin) {
         this.correoAdmin = correoAdmin;
     }
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+    
+    
         
 }

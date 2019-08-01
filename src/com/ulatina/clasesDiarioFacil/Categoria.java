@@ -10,6 +10,7 @@ package com.ulatina.clasesDiarioFacil;
  * @author Personal
  */
 public class Categoria {
+    
     private int idCategoria;
     private String nombreCategoria;
 

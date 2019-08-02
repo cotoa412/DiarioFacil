@@ -29,7 +29,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+        
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM usuario;";
@@ -69,10 +69,10 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+            
             stmt = conn.createStatement();
               stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
-              System.out.println("Usuario ingresado correctamente");
+              
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");

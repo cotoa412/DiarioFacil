@@ -9,6 +9,9 @@ package com.ulatina.clasesDiarioFacil;
  *
  * @author Personal
  */
+import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
+import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
+import java.util.Date;
  import java.util.Scanner;
 public class Tester {
 
@@ -19,16 +22,21 @@ public class Tester {
     public static void main(String[] args) {
         
         
-       Cliente cliente = new Cliente("anthony3064","123456",604510033,"anthony flores","anohyn@gmaul.com");
-        //Cliente cliente = new Cliente();
-        if (cliente.getNombreUsuario().equalsIgnoreCase("anthony3064")) {
-            
+//       Administrador cliente = new Administrador("anthony3064","123456",604510033,"anthony flores","anohyn@gmaul.com");
+//        Cliente cliente = new Cliente();
+//        if (cliente.getNombreUsuario().equalsIgnoreCase("anthony3064")) {
+//            cliente.mostrarMenu();
+//        }
+        
+        
+        Servicio_Producto sp = new Servicio_Producto();
+        Servicio_Categoria sc = new Servicio_Categoria();
+        
+        
+        
+        for (Object o : sp.selectAll()) {
+            System.out.println((Producto)o);
         }
-        
-        
-            
-        
-        
         
         
         

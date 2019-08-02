@@ -29,7 +29,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+           
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT cedula, nombre, contrasenna, nombreUsuario, correo FROM administrador;";
@@ -81,7 +81,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
 
         try {
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+           
             stmt = conn.createStatement();
 
 //            String nombre;
@@ -121,10 +121,10 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+            
             stmt = conn.createStatement();
             stmt.executeUpdate("update administrador set nombreAdmin = ('" + (((Administrador)obj).getNombreAdmin()) +"'), cedulaAdmin = ('" + (((Administrador)obj).getCedulaAdmin()) +"'), correoAdmin = ('" + (((Administrador)obj).getCorreoAdmin()) +"')");
-              System.out.println("Admin actualizado correctamente");
+              
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");
@@ -144,7 +144,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+            
             stmt = conn.createStatement();
             stmt.executeUpdate("delete from administrador where usuario = ('" + (((Administrador)obj).getUsuario()) + "')");
             System.out.println("El admin con el id " + (((Administrador)obj).getUsuario()) + " ha sido removido de la base de datos.");

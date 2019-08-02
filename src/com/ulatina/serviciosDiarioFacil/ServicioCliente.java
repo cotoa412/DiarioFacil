@@ -28,7 +28,7 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+            
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM cliente;";
@@ -80,7 +80,7 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
 
         try {
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+          
             stmt = conn.createStatement();
 
 //            String nombre;
@@ -120,7 +120,7 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+       
             stmt = conn.createStatement();
             stmt.executeUpdate("update administrador set nombreCliente = ('" + (((Cliente)obj).getNombreCliente()) +"'), cedulaCliente = ('" + (((Cliente)obj).getCedulaCliente()) +"'), correo = ('" + (((Cliente)obj).getCorreo()) +"')");
               System.out.println("Admin actualizado correctamente");

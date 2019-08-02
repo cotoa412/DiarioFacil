@@ -27,7 +27,6 @@ public abstract class Servicio {
         
         try{
             Class.forName(JDBC_DRIVER);
-            System.out.println("Conectando a la base de datos.");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         }catch(Exception e){
             e.printStackTrace();

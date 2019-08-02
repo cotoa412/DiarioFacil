@@ -28,7 +28,7 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
         try {
             //STEP 3: Execute a querey
             super.conectar();
-            System.out.println("Conectado a la base, creando un statement...");
+           
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM categoria;";
@@ -72,7 +72,7 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
             
             int i = stmt.executeUpdate(sql);
             
-            System.out.println("Categoria creada con éxito.");
+           
             
         }catch(Exception e){
             

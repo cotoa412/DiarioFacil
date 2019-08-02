@@ -122,8 +122,8 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
             super.conectar();
        
             stmt = conn.createStatement();
-            stmt.executeUpdate("update administrador set nombreCliente = ('" + (((Cliente)obj).getNombreCliente()) +"'), cedulaCliente = ('" + (((Cliente)obj).getCedulaCliente()) +"'), correo = ('" + (((Cliente)obj).getCorreo()) +"')");
-              System.out.println("Admin actualizado correctamente");
+            stmt.executeUpdate("update cliente set nombreCliente = ('" + (((Cliente)obj).getNombreCliente()) +"'), cedulaCliente = ('" + (((Cliente)obj).getCedulaCliente()) +"'), correo = ('" + (((Cliente)obj).getCorreo()) +"')");
+            System.out.println("Cliente actualizado exitosamente.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Ha pasado un error.");

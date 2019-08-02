@@ -11,8 +11,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.ArrayList;
+
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,8 +31,7 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
         List<Object> listaRetorno = new ArrayList<Object>();
         Categoria categoria = new Categoria();
         Servicio_Categoria s = new Servicio_Categoria();
-      
-        DateFormat formato = new SimpleDateFormat("YY-MM-dd");
+        
         try{
             this.conectar();
             
@@ -46,15 +47,14 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
                double valor = rs.getDouble("valor");
                int cantidad = rs.getInt("cantidad");
                int cat = rs.getInt("categoria");
+               
               
                for (Object o : s.selectAll()) {
                    if (cat == ((Categoria)o).getIdCategoria()) {
                        categoria = ((Categoria)o);
                    }
                }
-               
-               
-               
+                
                listaRetorno.add(new Producto(id,nom,fecha,valor,cantidad,categoria));
              
            }
@@ -107,9 +107,7 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
             String sql = "INSERT INTO producto(nombreProducto,fechaVencimiento,valor,cantidad,categoria) VALUES('"+((Producto)obj).getNombreProducto()+"','"+formato.format(new Date())+"',"+((Producto)obj).getPrecioProducto()+","+((Producto)obj).getCantidad()+","+categoria.getIdCategoria()+")";
             
             int insert = stmt.executeUpdate(sql);
-            
-            System.out.println("Guardado con éxito");
-            
+        
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{

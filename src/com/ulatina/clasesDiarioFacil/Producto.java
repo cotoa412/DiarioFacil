@@ -34,6 +34,16 @@ public class Producto {
         
     }
 
+    public Producto(String nombreProducto,Date fechaVencimiento,double precioProducto,int cantidad){
+    
+        this.nombreProducto = nombreProducto;
+        this.fechaVencimiento = fechaVencimiento;
+        this.precioProducto = precioProducto;
+        this.cantidad = cantidad;
+      
+        
+    }
+    
     public Producto(int codigoProducto, String nombreProducto, Date fechaVencimiento, double precioProducto, int cantidad, Categoria categoria) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;

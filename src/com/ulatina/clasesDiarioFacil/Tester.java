@@ -10,6 +10,10 @@ package com.ulatina.clasesDiarioFacil;
  * @author Personal
  */
 import com.ulatina.serviciosDiarioFacil.ServicioCliente;
+import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
+import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
+import java.util.Date;
+ import java.util.Scanner;
 public class Tester {
 
     /**
@@ -24,6 +28,13 @@ public class Tester {
         ServicioCliente sc = new ServicioCliente();
         sc.insert(cliente);
             
+        
+        
+//       Administrador cliente = new Administrador("anthony3064","123456",604510033,"anthony flores","anohyn@gmaul.com");
+//        Cliente cliente = new Cliente();
+//        if (cliente.getNombreUsuario().equalsIgnoreCase("anthony3064")) {
+//            cliente.mostrarMenu();
+//        }
         
         
         

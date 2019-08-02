@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 public abstract class Servicio {
     
     protected static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    protected static String DB_URL = "jdbc:mysql://localhost:3306/diarioFacil"+"?useTimezone=true&serverTimezone=UTC";
+    protected static String DB_URL = "jdbc:mysql://localhost:3306/patrones"+"?useTimezone=true&serverTimezone=UTC";
     
     protected static String USER = "root";
     protected static String PASS = "123456";

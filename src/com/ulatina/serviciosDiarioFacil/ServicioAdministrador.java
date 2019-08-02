@@ -99,7 +99,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
 //            usuario = sc.next();
 //            System.out.println("Ingrese la contraseña para insertar en la base de datos:");
 //            contra = sc.next();
-            stmt.executeUpdate("insert into administrador (cedulaAdmin, nombreAdmin, correoAdmin, usuario) values ('" + (((Administrador) obj).getCedulaAdmin()) + "','" + (((Administrador) obj).getNombreAdmin()) + "','" + (((Administrador) obj).getCorreoAdmin()) + "','" + idDelUsuario + "')");
+            stmt.executeQuery("insert into administrador (cedulaAdmin, nombreAdmin, correoAdmin, usuario) values ('" + (((Administrador) obj).getCedulaAdmin()) + "','" + (((Administrador) obj).getNombreAdmin()) + "','" + (((Administrador) obj).getCorreoAdmin()) + "','" + idDelUsuario + "')");
 //            System.out.println("Los valores han sido ingresados en la base de datos.");
 
         } catch (Exception e) {

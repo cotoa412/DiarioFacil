@@ -9,7 +9,7 @@ package com.ulatina.clasesDiarioFacil;
  *
  * @author Personal
  */
- import java.util.Scanner;
+import com.ulatina.serviciosDiarioFacil.ServicioCliente;
 public class Tester {
 
     /**
@@ -21,11 +21,8 @@ public class Tester {
         
        Cliente cliente = new Cliente("anthony3064","123456",604510033,"anthony flores","anohyn@gmaul.com");
         //Cliente cliente = new Cliente();
-        if (cliente.getNombreUsuario().equalsIgnoreCase("anthony3064")) {
-            
-        }
-        
-        
+        ServicioCliente sc = new ServicioCliente();
+        sc.insert(cliente);
             
         
         

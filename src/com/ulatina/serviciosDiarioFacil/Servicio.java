@@ -27,6 +27,7 @@ public abstract class Servicio {
         
         try{
             Class.forName(JDBC_DRIVER);
+            
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         }catch(Exception e){
             e.printStackTrace();

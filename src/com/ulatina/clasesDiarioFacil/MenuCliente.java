@@ -5,6 +5,8 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
+import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
 import java.util.Scanner;
 
 /**
@@ -12,7 +14,10 @@ import java.util.Scanner;
  * @author Personal
  */
 public class MenuCliente implements iMenu{
-
+    
+    Servicio_Producto sp = new Servicio_Producto();
+    Servicio_Categoria sc = new Servicio_Categoria();
+    
     @Override
     public void desplegarMenu() {
         
@@ -32,7 +37,14 @@ public class MenuCliente implements iMenu{
         
         switch(opc){
         
-            case 1: System.out.println("Lista de productos.");
+            case 1: for (Object obj : sc.selectAll()) {
+                    System.out.println(((Categoria)obj).getNombreCategoria());
+                    for (Object o : sp.selectAll()) {
+                        if (((Categoria)obj).getIdCategoria() == ((Producto)o).getCategoria().getIdCategoria()) {
+                            System.out.println(((Producto)o));
+                        }
+                }
+                };
                 break;
         
             case 2: System.out.println("Lista de combos.");

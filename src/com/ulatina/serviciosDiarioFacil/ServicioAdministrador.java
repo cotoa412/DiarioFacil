@@ -26,25 +26,28 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
         ResultSet rs = null;
         Statement stmt = null;
         List<Object> aList = new ArrayList<>();
+    
+        
         try {
             //STEP 3: Execute a querey
             super.conectar();
            
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT cedula, nombre, contrasenna, nombreUsuario, correo FROM administrador;";
+            sql = "SELECT * FROM usuario us,administrador a where idUsuario=usuarioAdministrador";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                String nombreAdministrador = rs.getString("nombre");
-                String contrasenna = rs.getString("contrasenna");
-                int cedulaAdministrador = rs.getInt("cedula");
                 String nombreUsuario = rs.getString("nombreUsuario");
-                String correoAdministrador = rs.getString("correo");
+                String contrasenna = rs.getString("contrasenna");
+                int cedulaAdministrador = rs.getInt("cedulaAdministrador");
+                String nombreAdministrador = rs.getString("nombreAdministrador");
+                String correoAdministrador = rs.getString("correoAdministrador");
+                int usuarioAdministrador = rs.getInt("usuarioAdministrador");
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
-                Administrador a = new Administrador(nombreUsuario, contrasenna, cedulaAdministrador, nombreAdministrador, correoAdministrador);
+                Administrador a = new Administrador(nombreUsuario,contrasenna,cedulaAdministrador, nombreAdministrador,correoAdministrador,usuarioAdministrador);
                 aList.add(a);
 
             }
@@ -99,7 +102,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
 //            usuario = sc.next();
 //            System.out.println("Ingrese la contraseña para insertar en la base de datos:");
 //            contra = sc.next();
-            stmt.executeUpdate("insert into administrador (cedulaAdmin, nombreAdmin, correoAdmin, usuario) values ('" + (((Administrador) obj).getCedulaAdmin()) + "','" + (((Administrador) obj).getNombreAdmin()) + "','" + (((Administrador) obj).getCorreoAdmin()) + "','" + idDelUsuario + "')");
+              stmt.executeUpdate("insert into administrador (cedulaAdministrador, nombreAdministrador, correoAdministrador, usuarioAdministrador) values (" + (((Administrador) obj).getCedulaAdmin()) + ",'" + (((Administrador) obj).getNombreAdmin()) + "','" + (((Administrador) obj).getCorreoAdmin()) + "','" + idDelUsuario + "')");
 //            System.out.println("Los valores han sido ingresados en la base de datos.");
 
         } catch (Exception e) {

@@ -35,6 +35,17 @@ public class Administrador extends Usuario {
         this.comportamientoUsuario = new MenuAdmin();//Aqui sucede lo mismo pero con el constructor sobrecargado.
         
     }
+    
+     public Administrador(String nombreUsuario,String contrasenna ,int cedulaAdmin,String nombreAdmin,String correoAdmin,int usuario){
+    
+        super(nombreUsuario,contrasenna);
+        this.cedulaAdmin = cedulaAdmin;
+        this.nombreAdmin = nombreAdmin;
+        this.correoAdmin = correoAdmin;
+        this.usuario = usuario;
+        this.comportamientoUsuario = new MenuAdmin();//Aqui sucede lo mismo pero con el constructor sobrecargado.
+        
+    }
 
     public int getCedulaAdmin() {
         return cedulaAdmin;

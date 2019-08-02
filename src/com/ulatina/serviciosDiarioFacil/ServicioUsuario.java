@@ -5,6 +5,7 @@
  */
 package com.ulatina.serviciosDiarioFacil;
 
+import com.ulatina.clasesDiarioFacil.Administrador;
 import com.ulatina.clasesDiarioFacil.Cliente;
 import com.ulatina.clasesDiarioFacil.Usuario;
 import static com.ulatina.serviciosDiarioFacil.Servicio.conn;
@@ -42,7 +43,8 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
                 String contrasenna = rs.getString("contrasenna");
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
-                Usuario usuario = new Cliente();
+               
+               Usuario usuario = new Administrador();
                usuario.setIdUsuario(idUsuario);
                usuario.setNombreUsuario(nombreUsuario);
                usuario.setContrasenna(contrasenna);
@@ -71,7 +73,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
             super.conectar();
             
             stmt = conn.createStatement();
-              stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
+             stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
               
         } catch (Exception e) {
             e.printStackTrace();

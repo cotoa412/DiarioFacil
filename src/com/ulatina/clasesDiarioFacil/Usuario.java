@@ -20,6 +20,14 @@ public abstract class Usuario {
         
     }
     
+    public Usuario(int idUsuario,String nombreUsuario,String contrasenna) {
+        
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenna = contrasenna;
+        
+    }
+    
     public Usuario(String nombreUsuario,String contrasenna) {
         
         this.nombreUsuario = nombreUsuario;
@@ -47,6 +55,12 @@ public abstract class Usuario {
     public void setComportamientoUsuario(iMenu comportamientoUsuario){
         this.comportamientoUsuario = comportamientoUsuario; 
     }
+
+    public iMenu getComportamientoUsuario() {
+        return comportamientoUsuario;
+    }
+    
+    
     
     //Este metodo llama a desplegarMenu(Metodo de la interface) de la variable comportamientoUsuario segun como se instancie. 
     public void mostrarMenu(){

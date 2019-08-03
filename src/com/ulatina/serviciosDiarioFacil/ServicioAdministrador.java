@@ -34,11 +34,12 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
            
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM usuario us,administrador a where idUsuario=usuarioAdministrador";
+            sql = "SELECT * FROM usuario,administrador where idUsuario=usuarioAdministrador";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
+                int idAdministrador = rs.getInt("idUsuario");
                 String nombreUsuario = rs.getString("nombreUsuario");
                 String contrasenna = rs.getString("contrasenna");
                 int cedulaAdministrador = rs.getInt("cedulaAdministrador");

@@ -31,19 +31,21 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
             
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM cliente;";
+            sql = "SELECT * FROM usuario,cliente where idUsuario=usuarioCliente";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                String nombreCliente = rs.getString("nombre");
-                String contrasenna = rs.getString("contrasenna");
-                int cedulaCliente = rs.getInt("cedula");
+                int idUsuario = rs.getInt("idUsuario");
                 String nombreUsuario = rs.getString("nombreUsuario");
-                String correoCliente = rs.getString("correo");
+                String contrasenna = rs.getString("contrasenna");
+                int cedulaCliente = rs.getInt("cedulaCliente");
+                String nombreCliente = rs.getString("nombreCliente");
+                String correoCliente = rs.getString("correoCliente");
+                int usuario = rs.getInt("usuarioCliente");
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
-                Cliente c = new Cliente(nombreUsuario, contrasenna, cedulaCliente, nombreCliente, correoCliente);
+                Cliente c = new Cliente(idUsuario,nombreUsuario, contrasenna, cedulaCliente, nombreCliente, correoCliente,usuario);
                 uList.add(c);
 
             }
@@ -98,7 +100,7 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
 //            usuario = sc.next();
 //            System.out.println("Ingrese la contraseña para insertar en la base de datos:");
 //            contra = sc.next();
-            stmt.executeUpdate("insert into cliente (cedulaCliente, nombreCliente, correo, usuario) values ('" + (((Cliente) obj).getCedulaCliente()) + "','" + (((Cliente) obj).getNombreCliente()) + "','" + (((Cliente) obj).getCorreo()) + "','" + idDelUsuario + "')");
+            stmt.executeUpdate("insert into cliente (cedulaCliente, nombreCliente, correoCliente, usuarioCliente) values ('" + (((Cliente) obj).getCedulaCliente()) + "','" + (((Cliente) obj).getNombreCliente()) + "','" + (((Cliente) obj).getCorreo()) + "','" + idDelUsuario + "')");
 //            System.out.println("Los valores han sido ingresados en la base de datos.");
 
         } catch (Exception e) {

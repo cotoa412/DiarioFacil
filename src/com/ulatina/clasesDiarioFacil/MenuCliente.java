@@ -13,10 +13,18 @@ import java.util.Scanner;
  *
  * @author Personal
  */
-public class MenuCliente implements iMenu{
+public class MenuCliente implements iMenu,iUsuario{
     
+    private iSistema sistema;
     Servicio_Producto sp = new Servicio_Producto();
     Servicio_Categoria sc = new Servicio_Categoria();
+    
+    public MenuCliente(){
+    }
+    
+    public MenuCliente(iSistema sistema){
+        this.sistema = sistema;
+    }
     
     @Override
     public void desplegarMenu() {
@@ -26,25 +34,19 @@ public class MenuCliente implements iMenu{
         int opc = 0;
         
         do{
-        
+        System.out.println("----------------------------------------------------");
         System.out.println("1.Ver productos.");
         System.out.println("2.Ver combos.");                       
         System.out.println("3.Ver carrito de compra.");
         System.out.println("4.Cambio de contraseña."); 
         System.out.println("5.Reporte cliente.");
         System.out.println("6.Salir");
+        System.out.println("----------------------------------------------------");
         opc = lector.nextInt();
         
         switch(opc){
         
-            case 1: for (Object obj : sc.selectAll()) {
-                    System.out.println(((Categoria)obj).getNombreCategoria());
-                    for (Object o : sp.selectAll()) {
-                        if (((Categoria)obj).getIdCategoria() == ((Producto)o).getCategoria().getIdCategoria()) {
-                            System.out.println(((Producto)o));
-                        }
-                }
-                };
+            case 1: System.out.println(this.verListaProductos());
                 break;
         
             case 2: System.out.println("Lista de combos.");
@@ -62,8 +64,9 @@ public class MenuCliente implements iMenu{
         }
         
        }while(opc != 6);
+        
     }
-    
+        
     public void menuReporteCliente(){
     Scanner lector = new Scanner(System.in);
         
@@ -71,10 +74,12 @@ public class MenuCliente implements iMenu{
         
         do{
         
+        System.out.println("----------------------------------------------------");    
         System.out.println("1.Ver historial de órdenes.");
         System.out.println("2.Ver última orden.");
         System.out.println("3.Ver productos más consumidos.");
         System.out.println("4.Atrás.");
+        System.out.println("----------------------------------------------------");
         op = lector.nextInt();
         
         switch(op){
@@ -94,6 +99,30 @@ public class MenuCliente implements iMenu{
         
         }while(op != 4);
     
+    }
+
+    @Override
+    public String verListaProductos() {
+        return sistema.mostrarProductos();
+    }
+
+    @Override
+    public void verCombos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void verCarritoCompras() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cambiarContrasenna(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void setMediador(iSistema sistema){
+        this.sistema = sistema;
     }
     
 }

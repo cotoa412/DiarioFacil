@@ -14,6 +14,7 @@ import com.ulatina.serviciosDiarioFacil.ServicioAdministrador;
 
 import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
 import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
+import java.io.IOException;
 import java.util.Date;
  import java.util.Scanner;
 public class Tester {
@@ -22,17 +23,23 @@ public class Tester {
      * @param args the command line arguments
      */
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        ServicioAdministrador sa = new ServicioAdministrador();
+        iSistema sist = new Sistema();
+         
+        sist.validarUsuario(sist);
+        
+        
+        
+       
 
         
-     
-        
-        for (Object obj : sa.selectAll()) {
-            System.out.println(((Administrador)obj));
-        }
 
+//       Administrador admin = new Administrador();
+//       
+//       admin.mostrarMenu();
+
+       
     }
     
 }

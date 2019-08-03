@@ -44,7 +44,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
                
-               Usuario usuario = new Administrador();
+               Usuario usuario = new Cliente();
                usuario.setIdUsuario(idUsuario);
                usuario.setNombreUsuario(nombreUsuario);
                usuario.setContrasenna(contrasenna);

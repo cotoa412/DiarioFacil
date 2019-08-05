@@ -5,6 +5,8 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import java.util.List;
+
 /**
  *
  * @author Personal
@@ -14,6 +16,6 @@ public interface iSistema {
     public void registrar(Cliente usuario);
     public void validarUsuario(iSistema sistema);
     public String mostrarProductos();
-    
+    public List<Cliente> mostrarListaClientes();
     
 }

@@ -10,6 +10,8 @@ import com.ulatina.serviciosDiarioFacil.ServicioCliente;
 import com.ulatina.serviciosDiarioFacil.ServicioUsuario;
 import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
 import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -59,10 +61,28 @@ public class Sistema implements iSistema{
                 
                 clienteValidado.mostrarMenu();
                 
+            }else{
+                
+                for (Object obj2 : servicioAdmin.selectAll()) {
+                
+                if (((Administrador)obj2).getNombreUsuario().equalsIgnoreCase(nombreUsuario) && ((Administrador)obj2).getContrasenna().equalsIgnoreCase(contrasenna) && ((Administrador)obj2).getIdUsuario() == ((Administrador)obj2).getUsuario()) {
+                
+                    
+                Administrador adminValidado = ((Administrador)obj2);
+                MenuAdmin menuAdmin = new MenuAdmin(sistema);
+                adminValidado.setComportamientoUsuario(menuAdmin);
+                
+                System.out.println("Bienvenido " + adminValidado.getNombreAdmin());
+                       
+                adminValidado.mostrarMenu();
+                
+            }
+                
+            }
             }
             
         }
-
+       
         }while(true);
     }
     
@@ -96,4 +116,17 @@ public class Sistema implements iSistema{
         
         return sb.toString();
     }
+    
+    @Override
+    public List<Cliente> mostrarListaClientes(){
+        ServicioCliente sc = new ServicioCliente();
+        
+        List<Cliente> listaClientes = new ArrayList<Cliente>();
+        
+        for (Object obj : sc.selectAll()) {
+            listaClientes.add(((Cliente)obj));
+        }
+        return listaClientes;
+    }
 }
+

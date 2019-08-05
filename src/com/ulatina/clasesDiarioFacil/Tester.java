@@ -25,16 +25,10 @@ public class Tester {
    
     public static void main(String[] args) throws IOException {
         
-        iSistema sist = new Sistema();
-         
-        sist.validarUsuario(sist);
+//        iSistema sist = new Sistema();
         
-        
-        
+//        sist.validarUsuario(sist);
        
-
-        
-
 //       Administrador admin = new Administrador();
 //       
 //       admin.mostrarMenu();

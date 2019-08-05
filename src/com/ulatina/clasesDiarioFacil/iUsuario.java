@@ -14,6 +14,7 @@ public interface iUsuario {
     public String verListaProductos();
     public void verCombos();
     public void verCarritoCompras();
-    public void cambiarContrasenna(Cliente cliente);    
+    public void cambiarContrasenna(Cliente cliente);
+    
     
 }

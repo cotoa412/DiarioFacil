@@ -7,6 +7,7 @@ package com.ulatina.serviciosDiarioFacil;
 
 import com.ulatina.clasesDiarioFacil.Administrador;
 import com.ulatina.clasesDiarioFacil.Cliente;
+import com.ulatina.clasesDiarioFacil.Usuario;
 
 /**
  *
@@ -19,13 +20,15 @@ public class NewMain {
      */
     public static void main(String[] args) {
        
-        ServicioAdministrador s = new ServicioAdministrador();
+        ServicioUsuario s = new ServicioUsuario();
         
-        for (Object obj : s.selectAll()) {
+        for (Object obj : s.seleccionarAdministrador()) {
             System.out.println((Administrador)obj);
         }
         
-        
+        for (Object obj : s.seleccionarCliente()) {
+            System.out.println((Cliente)obj);
+        }
         
    
         

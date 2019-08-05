@@ -32,7 +32,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
         
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM usuario;";
+            sql = "SELECT us.idUsuario,us.nombreUsuario,us.contrasenna,ad.usuarioAdministrador,cl.usuarioCliente FROM usuario us,administrador ad,cliente cl where us.idUsuario=ad.usuarioAdministrador or us.idUsuario=cl.usuarioCliente";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
@@ -40,23 +40,44 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
                 int idUsuario = rs.getInt("idUsuario");
                 String nombreUsuario = rs.getString("nombreUsuario");
                 String contrasenna = rs.getString("contrasenna");
-                //Display values
-                //   System.out.println("ID: "+id+", Nombre: " +nombre);
-               
-               if (Usuario.isAdmin()){
-                 Usuario admin = new Administrador();
-                 admin.setIdUsuario(idUsuario);
-                 admin.setNombreUsuario(nombreUsuario);
-                 admin.setContrasenna(contrasenna);
-                 uList.add(admin);
-               }
-               else if(!Usuario.isAdmin()){
+                int usuarioC = rs.getInt("usuarioCliente");
+                int usuarioA = rs.getInt("usuarioAdministrador");
+                
+                if (usuarioC == idUsuario) {
+                    
                    Usuario cliente = new Cliente();
                    cliente.setIdUsuario(idUsuario);
                    cliente.setNombreUsuario(nombreUsuario);
                    cliente.setContrasenna(contrasenna);
                    uList.add(cliente);
-               } 
+                    
+                }else if(usuarioA == idUsuario){
+                    
+                    Usuario admin = new Administrador();
+                    admin.setIdUsuario(idUsuario);
+                    admin.setNombreUsuario(nombreUsuario);
+                    admin.setContrasenna(contrasenna);
+                    uList.add(admin);
+                 
+                }
+                
+                //Display values
+                //   System.out.println("ID: "+id+", Nombre: " +nombre);
+               
+//               if (Usuario.isAdmin()){
+//                 Usuario admin = new Administrador();
+//                 admin.setIdUsuario(idUsuario);
+//                 admin.setNombreUsuario(nombreUsuario);
+//                 admin.setContrasenna(contrasenna);
+//                 uList.add(admin);
+//               }
+//               else if(!Usuario.isAdmin()){
+//                   Usuario cliente = new Cliente();
+//                   cliente.setIdUsuario(idUsuario);
+//                   cliente.setNombreUsuario(nombreUsuario);
+//                   cliente.setContrasenna(contrasenna);
+//                   uList.add(cliente);
+//               } 
 
             }
         } catch (Exception e) {
@@ -72,6 +93,53 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
         }
         return uList;        
     }
+    
+    public List<Object> seleccionarAdministrador(){
+    ResultSet rs = null;
+        Statement stmt = null;
+        List<Object> uList = new ArrayList<>();
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+        
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT us.idUsuario,us.nombreUsuario,us.contrasenna,ad.usuarioAdministrador FROM usuario us,administrador ad where us.idUsuario=ad.usuarioAdministrador";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            while (rs.next()) {
+                //Retrieve by column name
+                int idUsuario = rs.getInt("idUsuario");
+                String nombreUsuario = rs.getString("nombreUsuario");
+                String contrasenna = rs.getString("contrasenna");
+                int usuarioA = rs.getInt("usuarioAdministrador");
+                
+                if (usuarioA == idUsuario) {
+                    
+                   Usuario administrador = new Administrador();
+                   administrador.setIdUsuario(idUsuario);
+                   administrador.setNombreUsuario(nombreUsuario);
+                   administrador.setContrasenna(contrasenna);
+                   uList.add(administrador);
+                    
+                }
+   
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return uList; 
+  
+    }
 
     @Override
     public void insert(Object obj) {
@@ -81,7 +149,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
             super.conectar();
             
             stmt = conn.createStatement();
-             stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
+            stmt.executeUpdate("insert into usuario (nombreUsuario, contrasenna) values ('" + (((Usuario)obj).getNombreUsuario()) + "','" + (((Usuario)obj).getContrasenna()) + "')");
               
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +163,88 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
             }
         }        
     }
+    
+    
+    public List<Object> seleccionarCliente(){
+        ResultSet rs = null;
+        Statement stmt = null;
+        List<Object> uList = new ArrayList<>();
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+        
+            stmt = conn.createStatement();
+            String sql;
+            sql = "select us.idUsuario,us.nombreUsuario,us.contrasenna,cl.usuarioCliente from usuario us,cliente cl where us.idUsuario=cl.usuarioCliente";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            while (rs.next()) {
+                //Retrieve by column name
+                int idUsuario = rs.getInt("idUsuario");
+                String nombreUsuario = rs.getString("nombreUsuario");
+                String contrasenna = rs.getString("contrasenna");
+                int usuarioC = rs.getInt("usuarioCliente");
+                
+                if (usuarioC == idUsuario) {
+                    
+                   Usuario cliente = new Cliente();
+                   cliente.setIdUsuario(idUsuario);
+                   cliente.setNombreUsuario(nombreUsuario);
+                   cliente.setContrasenna(contrasenna);
+                   uList.add(cliente);
+                    
+                }
+   
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return uList; 
+  
+    }
+    
+    public int seleccionarIdCliente(Object obj){
+        ResultSet rs = null;
+        Statement stmt = null;
+        int idCliente = 0;
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+        
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT idUsuario FROM usuario where nombreUsuario='"+((Cliente)obj).getNombreUsuario()+"' and contrasenna='"+((Cliente)obj).getContrasenna()+"'";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            if (rs.next()) {
+                //Recibe el id del cliente que le pasamos por parametro
+                idCliente = rs.getInt("idUsuario");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return idCliente;        
+  
+    }
+
+   
     @Override
     public void update(Object obj) {
         Statement stmt = null;

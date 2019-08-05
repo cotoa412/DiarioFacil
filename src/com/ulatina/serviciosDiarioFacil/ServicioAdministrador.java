@@ -48,7 +48,7 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
                 int usuarioAdministrador = rs.getInt("usuarioAdministrador");
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
-                Administrador a = new Administrador(nombreUsuario,contrasenna,cedulaAdministrador, nombreAdministrador,correoAdministrador,usuarioAdministrador);
+                Administrador a = new Administrador(idAdministrador,nombreUsuario,contrasenna,cedulaAdministrador, nombreAdministrador,correoAdministrador,usuarioAdministrador);
                 aList.add(a);
 
             }

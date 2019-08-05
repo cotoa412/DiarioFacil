@@ -18,8 +18,6 @@ public class MenuAdmin implements iMenu,iAdministrador{
     
     private iSistema sistema;
     private Scanner lector = new Scanner(System.in);
-    private Servicio_Producto sp= new Servicio_Producto();
-    private Servicio_Categoria sc = new Servicio_Categoria(); 
     
     public MenuAdmin(){
     
@@ -48,7 +46,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         switch(opc){
         
-            case 1: 
+            case 1: this.opcionesProductos();
                 break;
             case 2: System.out.println("Mantenimiento de proveedores.");
                 break;
@@ -62,7 +60,8 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
             case 7: System.out.println("Ordenes.");
                 break;
-            case 8: System.out.println("Gracias.");
+            case 8: 
+                System.out.println("Gracias.");
                 break;    
             default: System.out.println("La opción no es valida.");
             
@@ -106,7 +105,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         System.out.println("1.Ver lista clientes.");
         System.out.println("2.Agregar un nuevo clientte.");
-        System.out.println("3.Agregar una categoria.");
+        System.out.println("3.Actualizar datos del cliente.");
         System.out.println("4.Atras.");
         op = lector.nextInt();
        
@@ -132,6 +131,9 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 
                 break;
             case 3: 
+                break;
+            case 4:
+                System.out.println("Gracias");
                 break;
             default: System.out.println("La opción no es valida.");
             
@@ -220,7 +222,13 @@ public class MenuAdmin implements iMenu,iAdministrador{
 
     @Override
     public String verListaClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuffer sb = new StringBuffer();
+        for (Cliente cliente: sistema.mostrarListaClientes()) {
+            sb.append(cliente);
+            sb.append("\n");
+        }
+        
+        return sb.toString();
     }
 
     @Override

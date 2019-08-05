@@ -67,19 +67,15 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
     @Override
     public void insert(Object obj) { //primero metemos el id de serviciousuario en cliente y despues verificamos que sean el mismo y despues el insert.
         ServicioUsuario u = new ServicioUsuario();
-
+        int idDelUsuario = 0;
         Statement stmt = null;
 
         u.insert(obj);
 
-        int idDelUsuario = 0;
+        
 
-        for (Object obj2 : u.selectAll()) {
-            if (((Cliente) obj2).getNombreUsuario().equals(((Cliente) obj).getNombreUsuario()) && ((Cliente) obj2).getContrasenna().equals(((Cliente) obj).getContrasenna())) {
-                idDelUsuario = ((Cliente) obj2).getIdUsuario();
-            }
-        }
-
+        idDelUsuario = u.seleccionarIdCliente(obj);
+        
         try {
             super.conectar();
           

@@ -28,6 +28,7 @@ public class Cliente extends Usuario{
         super(nombreUsuario,contrasenna);
         this.comportamientoUsuario = new MenuCliente();//Aqui sucede lo mismo pero con el constructor sobrecargado.
         this.cedulaCliente = cedulaCliente;
+        Cliente.admin = true;
         this.nombreCliente = nombreCliente;
         this.correo = correoCliente;
         this.tipoCliente = "Básico";

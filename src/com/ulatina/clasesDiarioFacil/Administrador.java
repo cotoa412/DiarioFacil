@@ -30,6 +30,7 @@ public class Administrador extends Usuario {
     
         super(nombreUsuario,contrasenna);
         this.cedulaAdmin = cedulaAdmin;
+        Administrador.admin = true;
         this.nombreAdmin = nombreAdmin;
         this.correoAdmin = correoAdmin;
         this.comportamientoUsuario = new MenuAdmin();//Aqui sucede lo mismo pero con el constructor sobrecargado.

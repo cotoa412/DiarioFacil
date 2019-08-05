@@ -24,7 +24,6 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
     @Override
     public List<Object> selectAll() {
         ResultSet rs = null;
-        StringBuffer s = new StringBuffer();
         Statement stmt = null;
         List<Object> uList = new ArrayList<>();
         try {

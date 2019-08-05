@@ -43,11 +43,20 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
                
-               Usuario usuario = new Cliente();
-               usuario.setIdUsuario(idUsuario);
-               usuario.setNombreUsuario(nombreUsuario);
-               usuario.setContrasenna(contrasenna);
-               uList.add(usuario);
+               if (Usuario.isAdmin()){
+                 Usuario admin = new Administrador();
+                 admin.setIdUsuario(idUsuario);
+                 admin.setNombreUsuario(nombreUsuario);
+                 admin.setContrasenna(contrasenna);
+                 uList.add(admin);
+               }
+               else if(!Usuario.isAdmin()){
+                   Usuario cliente = new Cliente();
+                   cliente.setIdUsuario(idUsuario);
+                   cliente.setNombreUsuario(nombreUsuario);
+                   cliente.setContrasenna(contrasenna);
+                   uList.add(cliente);
+               } 
 
             }
         } catch (Exception e) {

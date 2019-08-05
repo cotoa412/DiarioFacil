@@ -14,6 +14,7 @@ public abstract class Usuario {
     protected int idUsuario;
     protected String nombreUsuario = "";
     protected String contrasenna = "";
+    protected static boolean admin = true;
     protected iMenu comportamientoUsuario; // Creo una variable de tipo iMenu(Interface).
 
     public Usuario() {
@@ -73,6 +74,14 @@ public abstract class Usuario {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public static boolean isAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(boolean admin) {
+        Usuario.admin = admin;
     }
     
     

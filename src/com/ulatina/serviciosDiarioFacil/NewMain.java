@@ -20,15 +20,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
        
-        ServicioUsuario s = new ServicioUsuario();
-        
-        for (Object obj : s.seleccionarAdministrador()) {
-            System.out.println((Administrador)obj);
-        }
-        
-        for (Object obj : s.seleccionarCliente()) {
-            System.out.println((Cliente)obj);
-        }
+       
         
    
         

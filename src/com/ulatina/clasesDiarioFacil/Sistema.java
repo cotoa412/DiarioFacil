@@ -41,7 +41,7 @@ public class Sistema implements iSistema{
         do{
         
         System.out.println("Bienvenido a Diario Facil.");
-        
+            System.out.println("-----------------------------------------------");
         System.out.println("Digite su nombre de usuario.");
         String nombreUsuario = lector.next();
         System.out.println("Digite su contrasenna.");
@@ -49,7 +49,7 @@ public class Sistema implements iSistema{
         
         for (Object obj : servicioCliente.selectAll()) {
             
-            if (((Cliente)obj).getNombreUsuario().equalsIgnoreCase(nombreUsuario) && ((Cliente)obj).getContrasenna().equalsIgnoreCase(contrasenna) && ((Cliente)obj).getIdUsuario() == ((Cliente)obj).getUsuario()) {
+            if (((Usuario)obj).getNombreUsuario().equalsIgnoreCase(nombreUsuario) && ((Usuario)obj).getContrasenna().equalsIgnoreCase(contrasenna) && ((Usuario)obj).getIdUsuario() == ((Cliente)obj).getUsuario()) {
                 
                     
                 Cliente clienteValidado = ((Cliente)obj);
@@ -65,22 +65,22 @@ public class Sistema implements iSistema{
                 
                 for (Object obj2 : servicioAdmin.selectAll()) {
                 
-                if (((Administrador)obj2).getNombreUsuario().equalsIgnoreCase(nombreUsuario) && ((Administrador)obj2).getContrasenna().equalsIgnoreCase(contrasenna) && ((Administrador)obj2).getIdUsuario() == ((Administrador)obj2).getUsuario()) {
+                    if (((Usuario)obj2).getNombreUsuario().equalsIgnoreCase(nombreUsuario) && ((Usuario)obj2).getContrasenna().equalsIgnoreCase(contrasenna) && ((Usuario)obj2).getIdUsuario() == ((Administrador)obj2).getUsuario()) {
                 
                     
-                Administrador adminValidado = ((Administrador)obj2);
-                MenuAdmin menuAdmin = new MenuAdmin(sistema);
-                adminValidado.setComportamientoUsuario(menuAdmin);
+                    Administrador adminValidado = ((Administrador)obj2);
+                    MenuAdmin menuAdmin = new MenuAdmin(sistema);
+                    adminValidado.setComportamientoUsuario(menuAdmin);
                 
-                System.out.println("Bienvenido " + adminValidado.getNombreAdmin());
+                    System.out.println("Bienvenido " + adminValidado.getNombreAdmin());
                        
-                adminValidado.mostrarMenu();
+                    adminValidado.mostrarMenu();
+                
+                } 
+                }
                 
             }
-                
-            }
-            }
-            
+             
         }
        
         }while(true);

@@ -11,6 +11,7 @@ package com.ulatina.clasesDiarioFacil;
  */
 
 import com.ulatina.serviciosDiarioFacil.ServicioAdministrador;
+import com.ulatina.serviciosDiarioFacil.ServicioCliente;
 
 import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
 import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
@@ -25,15 +26,13 @@ public class Tester {
    
     public static void main(String[] args) throws IOException {
         
-//        iSistema sist = new Sistema();
+        iSistema sist = new Sistema();
         
-//        sist.validarUsuario(sist);
-       
-//       Administrador admin = new Administrador();
-//       
-//       admin.mostrarMenu();
-
-       
+        sist.validarUsuario(sist);
+      
+  
+    
+    
     }
     
 }

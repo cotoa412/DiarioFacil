@@ -64,21 +64,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
                
-//               if (Usuario.isAdmin()){
-//                 Usuario admin = new Administrador();
-//                 admin.setIdUsuario(idUsuario);
-//                 admin.setNombreUsuario(nombreUsuario);
-//                 admin.setContrasenna(contrasenna);
-//                 uList.add(admin);
-//               }
-//               else if(!Usuario.isAdmin()){
-//                   Usuario cliente = new Cliente();
-//                   cliente.setIdUsuario(idUsuario);
-//                   cliente.setNombreUsuario(nombreUsuario);
-//                   cliente.setContrasenna(contrasenna);
-//                   uList.add(cliente);
-//               } 
-
+               
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,11 +127,13 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
   
     }
 
+    
     @Override
     public void insert(Object obj) {
         Statement stmt = null;
         try {
             //STEP 3: Execute a querey
+            
             super.conectar();
             
             stmt = conn.createStatement();
@@ -243,6 +231,40 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO {
         return idCliente;        
   
     }
+    
+    public int buscarIdAdmin(Object o){
+        ResultSet rs = null;
+        Statement stmt = null;
+        int idAdmin = 0;
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+        
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT idUsuario FROM usuario where nombreUsuario='"+((Administrador)o).getNombreUsuario()+"' and contrasenna='"+((Administrador)o).getContrasenna()+"'";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            if (rs.next()) {
+                //Recibe el id del cliente que le pasamos por parametro
+                idAdmin = rs.getInt("idUsuario");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return idAdmin;        
+  
+    }
+    
+    
 
    
     @Override

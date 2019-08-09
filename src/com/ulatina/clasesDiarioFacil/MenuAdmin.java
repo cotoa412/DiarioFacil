@@ -60,9 +60,8 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
             case 7: System.out.println("Ordenes.");
                 break;
-            case 8: 
-                System.out.println("Gracias.");
-                break;    
+            case 8: System.out.println("Gracias.");
+                break;   
             default: System.out.println("La opción no es valida.");
             
         }

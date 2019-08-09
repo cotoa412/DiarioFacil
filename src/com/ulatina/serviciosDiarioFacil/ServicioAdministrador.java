@@ -77,12 +77,8 @@ public class ServicioAdministrador extends Servicio implements InterfaceDAO {
 
         int idDelUsuario = 0;
 
-        for (Object obj2 : u.selectAll()) {
-            if (((Administrador) obj2).getNombreUsuario().equals(((Administrador) obj).getNombreUsuario()) && ((Administrador) obj2).getContrasenna().equals(((Administrador) obj).getContrasenna())) {
-                idDelUsuario = ((Administrador) obj2).getIdUsuario();
-            }
-        }
-
+        idDelUsuario = u.buscarIdAdmin(obj);
+       
         try {
             super.conectar();
            

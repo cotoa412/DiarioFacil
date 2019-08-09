@@ -16,9 +16,7 @@ import java.util.Scanner;
 public class MenuCliente implements iMenu,iUsuario{
     
     private iSistema sistema;
-    Servicio_Producto sp = new Servicio_Producto();
-    Servicio_Categoria sc = new Servicio_Categoria();
-    
+  
     public MenuCliente(){
     }
     

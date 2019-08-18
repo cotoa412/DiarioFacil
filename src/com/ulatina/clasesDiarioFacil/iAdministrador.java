@@ -17,7 +17,7 @@ public interface iAdministrador {
     public String verProductos();
     public void agregarProducto(Producto producto);
     public void agregarCategoria(Categoria categoria);
-    public void quitarProducto(String nombreProducto);
+    public String verListaCategorias();
     
     //Creacion de combos
     public void agregarCombo();
@@ -34,12 +34,12 @@ public interface iAdministrador {
     //Mantenimiento de clientes
     public String verListaClientes();
     public void agregarCliente(Cliente cliente);
-    public void actualizarCliente(String cliente);
+    public void actualizarCliente(String cliente,String correo);
     public void eliminarCliente(String nombreCliente);
     
     //Mantenimiento de provedores
     public String verListaProveedores();
-    public void agregarProveedore(Proveedor proveedor);
+    public void agregarProveedor(Proveedor proveedor);
     public void actualizarProveedor(String proveedor);
     public void eliminarProveedor(String proveedor); 
     

@@ -15,7 +15,12 @@ public interface iSistema {
     
     public void registrar(Cliente usuario);
     public void validarUsuario(iSistema sistema);
+    public void nuevoProducto(Producto producto);
     public String mostrarProductos();
+    public void nuevaCategoria(Categoria categoria);
+    public String verCategorias();
     public List<Cliente> mostrarListaClientes();
-    
+    public void actualizarCliente(String cliente,String correo);
+    public void guardarProveedor(Proveedor proveedor);
+    public String mostrarListaProveedores();
 }

@@ -10,14 +10,9 @@ package com.ulatina.clasesDiarioFacil;
  * @author Personal
  */
 
-import com.ulatina.serviciosDiarioFacil.ServicioAdministrador;
-import com.ulatina.serviciosDiarioFacil.ServicioCliente;
 
-import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
-import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
 import java.io.IOException;
-import java.util.Date;
- import java.util.Scanner;
+
 public class Tester {
 
     /**
@@ -26,13 +21,12 @@ public class Tester {
    
     public static void main(String[] args) throws IOException {
         
-        iSistema sist = new Sistema();
-        
+        iSistema sist = new Sistema();       
         sist.validarUsuario(sist);
       
-  
-    
-    
+     
+        
+        
     }
     
 }

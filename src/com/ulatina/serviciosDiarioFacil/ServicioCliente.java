@@ -6,13 +6,11 @@
 package com.ulatina.serviciosDiarioFacil;
 
 import com.ulatina.clasesDiarioFacil.Cliente;
-import com.ulatina.clasesDiarioFacil.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -72,8 +70,6 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
 
         u.insert(obj);
 
-        
-
         idDelUsuario = u.seleccionarIdCliente(obj);
         
         try {
@@ -120,7 +116,7 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
             super.conectar();
        
             stmt = conn.createStatement();
-            stmt.executeUpdate("update cliente set nombreCliente = ('" + (((Cliente)obj).getNombreCliente()) +"'), cedulaCliente = ('" + (((Cliente)obj).getCedulaCliente()) +"'), correo = ('" + (((Cliente)obj).getCorreo()) +"')");
+            stmt.executeUpdate("UPDATE cliente SET nombreCliente='" + (((Cliente)obj).getNombreCliente()) +",correo='" + (((Cliente)obj).getCorreo()) +"' WHERE cedulaCliente='"+((Cliente)obj).getCedulaCliente()+"'");
             System.out.println("Cliente actualizado exitosamente.");
         } catch (Exception e) {
             e.printStackTrace();

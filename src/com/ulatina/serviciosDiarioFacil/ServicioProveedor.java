@@ -6,6 +6,7 @@
 package com.ulatina.serviciosDiarioFacil;
 
 import com.ulatina.clasesDiarioFacil.Categoria;
+import com.ulatina.clasesDiarioFacil.Proveedor;
 import static com.ulatina.serviciosDiarioFacil.Servicio.conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,30 +18,31 @@ import java.util.List;
  *
  * @author Personal
  */
-public class Servicio_Categoria extends Servicio implements InterfaceDAO{
+public class ServicioProveedor extends Servicio implements InterfaceDAO{
 
     @Override
     public List<Object> selectAll() {
         ResultSet rs = null;
         Statement stmt = null;
-        List<Object> cList = new ArrayList<>();
+        List<Object> pList = new ArrayList<>();
         try {
             //STEP 3: Execute a querey
             super.conectar();
            
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM categoria;";
+            sql = "SELECT * FROM proveedor";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
-                int idCategoria = rs.getInt("idCategoria");
-                String nombreCategoria = rs.getString("nombreCategoria");
+                int idProveedor = rs.getInt("idProveedor");
+                String nombreProveedor = rs.getString("nombreProveedor");
+                String correoProveedor = rs.getString("correoProveedor");
+                String telProveedor = rs.getString("telProveedor");
                 //Display values
-                Categoria c = new Categoria(idCategoria,nombreCategoria);
-                cList.add(c);
-
+                Proveedor p = new Proveedor(idProveedor,nombreProveedor,correoProveedor,telProveedor);
+                pList.add(p);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,25 +55,20 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
                 ex.printStackTrace();
             }
         }
-        return cList;
-
+        return pList;
     }
 
     @Override
     public void insert(Object obj) {
         Statement stmt = null;
-        
-        String nombreCategoria = ((Categoria)obj).getNombreCategoria();
-     
+         
         try{
             this.conectar();
             
             stmt = conn.createStatement();
-            String sql = "INSERT INTO categoria(nombreCategoria) VALUES("+nombreCategoria+")";
-            
+            String sql = "INSERT INTO proveedor (nombreProveedor,correoProveedor,telProveedor) VALUES('"+((Proveedor)obj).getNombreProveedor()+"','"+((Proveedor)obj).getCorreoProveedor()+"','"+((Proveedor)obj).getTelProveedor()+"')";
+         
             int i = stmt.executeUpdate(sql);
-            
-           
             
         }catch(Exception e){
             
@@ -101,6 +98,5 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
     public void delete(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     
 }

@@ -6,15 +6,12 @@
 package com.ulatina.serviciosDiarioFacil;
 
 import com.ulatina.clasesDiarioFacil.Administrador;
-import com.ulatina.clasesDiarioFacil.Cliente;
-import com.ulatina.clasesDiarioFacil.Usuario;
 import static com.ulatina.serviciosDiarioFacil.Servicio.conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *

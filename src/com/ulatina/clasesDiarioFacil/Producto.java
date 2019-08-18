@@ -105,6 +105,6 @@ public class Producto {
     
     @Override
     public String toString(){
-     return this.getCodigoProducto() + " " + this.getNombreProducto() + " " + this.getFechaVencimiento() + " " + this.getPrecioProducto() + " " + this.getCantidad();
+     return "Codigo: " + this.getCodigoProducto() + ". Producto: " + this.getNombreProducto() + ". Fecha de vencimiento: " + this.getFechaVencimiento() + ". Valor: " + this.getPrecioProducto() + ". Unidades: " + this.getCantidad();
     }
 }

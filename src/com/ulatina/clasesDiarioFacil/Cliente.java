@@ -87,6 +87,7 @@ public class Cliente extends Usuario{
         this.usuario = usuario;
     }
     
+    @Override
     public String toString(){
     
         return this.getCedulaCliente() + " " + this.getNombreCliente() + " " + this.getCorreo()+ " " + this.getTipoCliente();

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,13 +82,12 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
 
     @Override
     public void insert(Object obj) {
-        Scanner lector = new Scanner(System.in);
         Statement stmt = null;
         DateFormat formato = new SimpleDateFormat("YY-MM-dd");
         Categoria categoria = new Categoria();
         
-        System.out.println("Escriba el nombre de la categoria en que desea guardar el producto");
-        String nombreCategoria = lector.next();
+        
+        String nombreCategoria = JOptionPane.showInputDialog("Nombre de la categoria.");
         
         Servicio_Categoria s = new Servicio_Categoria();
         
@@ -104,7 +104,7 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
             this.conectar();
             
             stmt = conn.createStatement();
-            String sql = "INSERT INTO producto(nombreProducto,fechaVencimiento,valor,cantidad,categoria) VALUES('"+((Producto)obj).getNombreProducto()+"','"+formato.format(new Date())+"',"+((Producto)obj).getPrecioProducto()+","+((Producto)obj).getCantidad()+","+categoria.getIdCategoria()+")";
+            String sql = "INSERT INTO producto(nombreProducto,fechaVencimiento,valor,cantidad,categoria) VALUES('"+((Producto)obj).getNombreProducto()+"','"+formato.format(((Producto)obj).getFechaVencimiento())+"',"+((Producto)obj).getPrecioProducto()+","+((Producto)obj).getCantidad()+","+categoria.getIdCategoria()+")";
             
             int insert = stmt.executeUpdate(sql);
         

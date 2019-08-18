@@ -5,8 +5,6 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
-import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
-import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
 import java.util.Scanner;
 
 /**

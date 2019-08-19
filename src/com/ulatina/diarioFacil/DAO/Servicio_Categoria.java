@@ -30,7 +30,7 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
            
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM categoria;";
+            sql = "SELECT * FROM categoriaD";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
             while (rs.next()) {
@@ -67,7 +67,7 @@ public class Servicio_Categoria extends Servicio implements InterfaceDAO{
             this.conectar();
             
             stmt = conn.createStatement();
-            String sql = "INSERT INTO categoria(nombreCategoria) VALUES("+nombreCategoria+")";
+            String sql = "insert into categoriaD(nombreCategoria) VALUES('"+nombreCategoria+"')";
             
             int i = stmt.executeUpdate(sql);
             

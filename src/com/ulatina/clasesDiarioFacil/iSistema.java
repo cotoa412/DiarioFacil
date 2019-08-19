@@ -23,4 +23,8 @@ public interface iSistema {
     public void actualizarCliente(String cliente,String correo);
     public void guardarProveedor(Proveedor proveedor);
     public String mostrarListaProveedores();
+    public void nuevoCombo();
+    public String verCombos();
+    
+    
 }

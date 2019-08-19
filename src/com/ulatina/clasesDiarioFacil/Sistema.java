@@ -218,6 +218,16 @@ public class Sistema implements iSistema{
         return sb.toString();
         
     }
+
+    @Override
+    public void nuevoCombo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String verCombos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

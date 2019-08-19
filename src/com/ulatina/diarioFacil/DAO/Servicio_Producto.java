@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ulatina.serviciosDiarioFacil;
+package com.ulatina.diarioFacil.DAO;
 
 import com.ulatina.clasesDiarioFacil.Categoria;
 import com.ulatina.clasesDiarioFacil.Producto;
@@ -13,10 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
-
-
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**

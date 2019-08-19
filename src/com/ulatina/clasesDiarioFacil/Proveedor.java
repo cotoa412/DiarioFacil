@@ -5,11 +5,15 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.clasesDiarioFacil.Email.Email;
+import com.ulatina.clasesDiarioFacil.patronObservador.Observador;
+import java.util.Date;
+
 /**
  *
  * @author Personal
  */
-public class Proveedor {
+public class Proveedor implements Observador {
     
     private int idProveedor;
     private String nombreProveedor;
@@ -70,6 +74,12 @@ public class Proveedor {
     
        return "Id : " + this.getIdProveedor() + " Nombre: " + this.getNombreProveedor() + " Correo: " + this.getCorreoProveedor() + " Tel: " + this.getTelProveedor();
     
+    }
+
+    @Override
+    public void actualizar() {
+        Email pedido = new Email();
+        pedido.pedidoAutomatico(this.getCorreoProveedor());
     }
     
 }

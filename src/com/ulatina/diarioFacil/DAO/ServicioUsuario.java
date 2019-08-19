@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ulatina.serviciosDiarioFacil;
+package com.ulatina.diarioFacil.DAO;
 
 import com.ulatina.clasesDiarioFacil.Administrador;
 import com.ulatina.clasesDiarioFacil.Cliente;
 import com.ulatina.clasesDiarioFacil.Usuario;
-import static com.ulatina.serviciosDiarioFacil.Servicio.conn;
+import static com.ulatina.diarioFacil.DAO.Servicio.conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

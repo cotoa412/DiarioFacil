@@ -5,6 +5,8 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.clasesDiarioFacil.Email.Email;
+import com.ulatina.diarioFacil.DAO.ServicioPedido;
 import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -51,7 +53,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
             case 3: System.out.println("Opciones de combos.");
                 break;    
-            case 4: System.out.println("Opciones de pedido.");
+            case 4: this.opcionesDePedidos();
                 break;    
             case 5: this.menuReporteCliente();
                 break;
@@ -226,6 +228,33 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         }while(op != 4);
     }
+    
+    public void opcionesDePedidos(){
+        int op = 0;
+        
+        do{
+        
+        System.out.println("1.Ver lista de pedidos.");
+        System.out.println("2.Hacer pedido.");
+        System.out.println("3.Atras");
+        
+        op = lector.nextInt();
+       
+        switch(op){
+        
+            case 1: System.out.println(this.verListaPedidos());
+                break;
+        
+            case 2: 
+                this.hacerPedido();
+            case 3: 
+                break;
+            default: System.out.println("La opción no es valida.");
+            
+        }
+        
+        }while(op != 3);
+    }
 
     @Override
     public String verProductos() {
@@ -260,12 +289,19 @@ public class MenuAdmin implements iMenu,iAdministrador{
 
     @Override
     public String verListaPedidos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuffer sb = new StringBuffer();
+        ServicioPedido sPedido = new ServicioPedido();
+        
+        for (Object o : sPedido.selectAll()) {
+            sb.append(((Pedido)o) + "\n");
+        }
+        return sb.toString();
     }
 
     @Override
-    public void hacerPedido(Pedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void hacerPedido() {
+        Email email = new Email();
+        email.hacerPedido();
     }
 
     @Override

@@ -5,11 +5,11 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
-import com.ulatina.serviciosDiarioFacil.ServicioAdministrador;
-import com.ulatina.serviciosDiarioFacil.ServicioCliente;
-import com.ulatina.serviciosDiarioFacil.ServicioProveedor;
-import com.ulatina.serviciosDiarioFacil.Servicio_Categoria;
-import com.ulatina.serviciosDiarioFacil.Servicio_Producto;
+import com.ulatina.diarioFacil.DAO.ServicioAdministrador;
+import com.ulatina.diarioFacil.DAO.ServicioCliente;
+import com.ulatina.diarioFacil.DAO.ServicioProveedor;
+import com.ulatina.diarioFacil.DAO.Servicio_Categoria;
+import com.ulatina.diarioFacil.DAO.Servicio_Producto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -218,6 +218,10 @@ public class Sistema implements iSistema{
         return sb.toString();
         
     }
+    
+    
+    
+    
     
 }
 

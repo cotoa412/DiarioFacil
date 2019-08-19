@@ -11,7 +11,9 @@ package com.ulatina.clasesDiarioFacil;
  */
 
 
+
 import java.io.IOException;
+
 
 public class Tester {
 
@@ -21,12 +23,10 @@ public class Tester {
    
     public static void main(String[] args) throws IOException {
         
-        iSistema sist = new Sistema();       
-        sist.validarUsuario(sist);
+       Sistema sist = new Sistema();       
+       sist.validarUsuario(sist);
       
-     
-        
-        
+      
     }
     
 }

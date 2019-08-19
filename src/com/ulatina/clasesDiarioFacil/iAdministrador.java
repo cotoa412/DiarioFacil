@@ -25,7 +25,7 @@ public interface iAdministrador {
     
     //Pedidos
     public String verListaPedidos();
-    public void hacerPedido(Pedido pedido);
+    public void hacerPedido();
     
     //Promociones
     public void agregarPromocion();

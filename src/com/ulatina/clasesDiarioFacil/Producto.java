@@ -5,7 +5,11 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.clasesDiarioFacil.patronObservador.Observador;
+import com.ulatina.clasesDiarioFacil.patronObservador.Sujeto;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -13,7 +17,7 @@ import java.util.Date;
  *
  * @author Personal
  */
-public class Producto {
+public class Producto implements Sujeto{
     
     private int codigoProducto;
     private String nombreProducto;
@@ -21,8 +25,17 @@ public class Producto {
     private double precioProducto;
     private int cantidad;
     private Categoria categoria;
+    private List<Proveedor> provedores = new ArrayList<>();
+   
+    public Producto(){
+      
+    }
     
-    public Producto(){}
+    public Producto(String nombreProducto,double precio,int cantidad){
+        this.nombreProducto = nombreProducto;
+        this.precioProducto = precio;
+        this.cantidad = cantidad;
+    }
     
     public Producto(String nombreProducto,Date fechaVencimiento,double precioProducto,int cantidad,Categoria categoria){
     
@@ -36,6 +49,7 @@ public class Producto {
 
     public Producto(String nombreProducto,Date fechaVencimiento,double precioProducto,int cantidad){
     
+       
         this.nombreProducto = nombreProducto;
         this.fechaVencimiento = fechaVencimiento;
         this.precioProducto = precioProducto;
@@ -45,6 +59,7 @@ public class Producto {
     }
     
     public Producto(int codigoProducto, String nombreProducto, Date fechaVencimiento, double precioProducto, int cantidad, Categoria categoria) {
+
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.fechaVencimiento = fechaVencimiento;
@@ -93,6 +108,10 @@ public class Producto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        
+        if (this.getCantidad() < 5) {
+            this.notificarObservadores();
+        }
     }
 
     public Categoria getCategoria() {
@@ -102,9 +121,36 @@ public class Producto {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public List<Proveedor> getProvedores() {
+        return provedores;
+    }
+
+    public void setProvedores(List<Proveedor> provedores) {
+        this.provedores = provedores;
+    }
+    
+    
     
     @Override
     public String toString(){
      return "Codigo: " + this.getCodigoProducto() + ". Producto: " + this.getNombreProducto() + ". Fecha de vencimiento: " + this.getFechaVencimiento() + ". Valor: " + this.getPrecioProducto() + ". Unidades: " + this.getCantidad();
     }
+
+   
+    @Override
+    public void registrarObservador(Observador o) {
+        this.provedores.add((Proveedor)o);
+    }
+
+    @Override
+    public void retirarObservador(Observador o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificarObservadores() {
+        this.provedores.forEach(provedor -> provedor.actualizar());
+    }
+
 }

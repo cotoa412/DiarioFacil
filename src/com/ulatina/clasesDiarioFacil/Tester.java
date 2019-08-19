@@ -23,6 +23,11 @@ public class Tester {
    
     public static void main(String[] args) throws IOException {
         
+       //Inicializando Chain of Responsability
+       ClienteVIPHandler vip = new ClienteVIPHandler();
+       ClienteNormalHandler clienteNormal = new ClienteNormalHandler();
+       vip.setSuccessor(clienteNormal);
+       
        Sistema sist = new Sistema();       
        sist.validarUsuario(sist);
       

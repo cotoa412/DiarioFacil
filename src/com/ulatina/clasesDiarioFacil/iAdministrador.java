@@ -28,7 +28,7 @@ public interface iAdministrador {
     public void hacerPedido();
     
     //Promociones
-    public void agregarPromocion();
+    public void agregarPromocion(String nombre);
     public String verPromociones();
     
     //Mantenimiento de clientes

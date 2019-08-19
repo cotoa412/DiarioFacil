@@ -7,6 +7,7 @@ package com.ulatina.clasesDiarioFacil;
 
 import com.ulatina.clasesDiarioFacil.Email.Email;
 import com.ulatina.diarioFacil.DAO.ServicioPedido;
+import com.ulatina.diarioFacil.DAO.Servicio_Producto;
 import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
     
     private iSistema sistema;
     private Scanner lector = new Scanner(System.in);
+    StringBuffer productos = new StringBuffer(); 
     
     public MenuAdmin(){
     
@@ -87,6 +89,9 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
         
             case 2: 
+                String nombre;
+                nombre = JOptionPane.showInputDialog("Digite el nombre del producto que desea añadirle una promoción");
+                this.agregarPromocion(nombre);
                 break;
             case 3: 
                 break;
@@ -180,7 +185,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 
                 String nombreCategoria = JOptionPane.showInputDialog("Nombre de la categoria.");
                 
-                Categoria c = new Categoria(nombreCategoria);
+                Categoria c = new Categoria(1,nombreCategoria);
                 
                 this.agregarCategoria(c);
                 
@@ -302,11 +307,37 @@ public class MenuAdmin implements iMenu,iAdministrador{
     public void hacerPedido() {
         Email email = new Email();
         email.hacerPedido();
-    }
+    }  
 
     @Override
-    public void agregarPromocion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void agregarPromocion(String nombre) {
+        Servicio_Producto sp=new Servicio_Producto();
+       int opc=0;
+        System.out.println("1.Agregar promocion VIP.");
+        System.out.println("2.Agregar promocion normal.");
+        opc = lector.nextInt();
+       switch(opc){
+           case 1: for(Object obj:sp.selectAll()){
+                   if (nombre==((Producto)obj).getNombreProducto()){
+                   Promocion promo = new PromocionFeature(new PromocionDescuento());
+                   double nuevoprecio = promo.descuentoVIP()*((Producto)obj).getPrecioProducto();                  
+                   productos.append("--------------------------------");
+                   productos.append(nombre);
+                   productos.append(nuevoprecio);
+                   }
+                   }
+                   break;
+           case 2: for(Object obj:sp.selectAll()){
+                   if (nombre==((Producto)obj).getNombreProducto()){
+                   Promocion promo = new PromocionFeature(new PromocionDescuento());
+                   double nuevoprecio = promo.descuento()*((Producto)obj).getPrecioProducto();                  
+                   productos.append("--------------------------------");
+                   productos.append(nombre);
+                   productos.append(nuevoprecio);
+                   }
+                   }
+                   break;        
+       }
     }
 
     @Override
@@ -371,6 +402,5 @@ public class MenuAdmin implements iMenu,iAdministrador{
     public void buscarFacturaPorFecha(Date fechaFactura) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     
 }

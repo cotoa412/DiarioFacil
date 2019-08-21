@@ -85,18 +85,7 @@ public class Orden {
       
      
       sb.append("\n*******************************************************************************************\n");
-      sb.append("No.Orden: " + this.getNumeroOrden());
-      sb.append("\n");
-      sb.append(this.cliente);
-      sb.append("Fecha:\t" + this.getFecha());
-      sb.append("\n*******************************************************************************************\n");
-      sb.append("#P.\tUnidades\tProducto\tPrecio\t\t\t\t\tVolorTotal");
-      sb.append("\n*******************************************************************************************\n");
-      for (Producto p : this.productos) {
-              sb.append(p + "\n");
-          }
-      sb.append("\n*******************************************************************************************\n");
-      sb.append("Total: " + this.totalAPagar);
+      
       sb.append("\n");
       sb.append("Paga Con:" + this.getPagaCon());
       sb.append("\n");

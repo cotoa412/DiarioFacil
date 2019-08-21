@@ -118,7 +118,7 @@ public class ServicioFactura extends Servicio implements InterfaceDAO {
       
             stmt = conn.createStatement();
             
-            stmt.executeUpdate("update factura set totalPagar='" + ((Orden)obj).getTotalAPagar() +"' WHERE numeroFactura='"+((Orden)obj).getNumeroOrden()+"'");
+            //stmt.executeUpdate("update factura set totalPagar='" + ((Factura)obj).getTotalAPagar() +"' WHERE numeroFactura='"+((Orden)obj).getNumeroOrden()+"'");
             
         } catch (Exception e) {
             e.printStackTrace();

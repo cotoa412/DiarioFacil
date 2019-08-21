@@ -52,8 +52,8 @@ public class ServicioProductoComprado extends Servicio implements InterfaceDAO {
                     
                 }
                 
-                Orden o = new Orden (numeroFactura,c,fechaFactura,totalPagar);
-                oList.add(o);
+               // Orden o = new Orden (numeroFactura,c,fechaFactura,totalPagar);
+              //  oList.add(o);
 
             }
         } catch (Exception e) {

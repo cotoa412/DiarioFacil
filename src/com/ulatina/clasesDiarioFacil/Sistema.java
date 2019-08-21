@@ -73,6 +73,7 @@ public class Sistema implements iSistema{
                 
                     
                 Cliente clienteValidado = ((Cliente)obj);
+               this.clienteIngresado = ((Cliente)obj);
                 MenuCliente menuCliente = new MenuCliente(sistema);
                 clienteValidado.setComportamientoUsuario(menuCliente);
                 
@@ -279,6 +280,17 @@ public class Sistema implements iSistema{
     public Carrito verCarrito(){
         
         return this.clienteIngresado.getCarrito();
+    }
+
+    @Override
+    public void insertarOrden() {
+        Orden o=new Orden();
+        o.setProductos(this.clienteIngresado.getCarrito().getProductosEnCarrito());
+    }
+
+    @Override
+    public Cliente agarrarClienteIngresado() {
+       return this.clienteIngresado; 
     }
     
     

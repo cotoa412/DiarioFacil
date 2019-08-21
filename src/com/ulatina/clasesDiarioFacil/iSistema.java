@@ -27,6 +27,8 @@ public interface iSistema {
     public void nuevoCombo(String combo);
     public void agregarProductoCarrito(String nombreProducto,int cantidad);
     public Carrito verCarrito();
+    public void insertarOrden();
+    public Cliente agarrarClienteIngresado();
     
     
 }

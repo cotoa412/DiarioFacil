@@ -10,6 +10,6 @@ package com.ulatina.clasesDiarioFacil;
  * @author laboratorio
  */
 public interface Promocion {
-    public double descuentoVIP();
+    public double descuento2();
     public double descuento();
 }

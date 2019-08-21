@@ -13,7 +13,7 @@ public class ClienteNormalHandler extends AbstractHandler {
 
     @Override
     public void handleRequest(Cliente cliente) {
-      if(cliente.getTipoCliente() == "VIP"){
+      if(cliente.getTipoCliente() != "VIP"){
            double promo = 1.00;
         }
       else {

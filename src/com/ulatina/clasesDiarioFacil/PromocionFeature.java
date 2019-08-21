@@ -18,35 +18,16 @@ public class PromocionFeature extends PromocionDecorador{
     }
 
     @Override
-    public double descuentoVIP() {
+    public double descuento2() {
         double promo=0;
-        ServicioCliente sc=new ServicioCliente();
-        for(Object obj: sc.selectAll()){
-         if(((Cliente)obj).getTipoCliente()=="VIP"){
-            promo = 0.75;
-         }else{
-             promo = 0;
-         }
-            }
-       getPromocion().descuentoVIP();
-       
+        promo=getPromocion().descuento2()-0.10;
        return promo;
     }
 
     @Override
     public double descuento() {
         double promo=0;
-        ServicioCliente sc=new ServicioCliente();
-        for(Object obj: sc.selectAll()){
-         if(((Cliente)obj).getTipoCliente()=="Basico"){
-            promo = 0.85;
-         }else{
-             promo = 0;
-         }
-            }
-       getPromocion().descuento();
-       
+        promo=getPromocion().descuento2();
        return promo;
-    }
-    
+    } 
 }

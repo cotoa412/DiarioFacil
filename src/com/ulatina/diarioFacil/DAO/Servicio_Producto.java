@@ -124,7 +124,33 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
     
     @Override
     public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement stmt = null;      
+        
+        try{
+            
+            
+            this.conectar();
+            
+            stmt = conn.createStatement();
+            stmt.executeUpdate("update producto set valor = '" + (((Producto)obj).getPrecioProducto()) +"' WHERE idProducto = '" + (((Producto)obj).getCodigoProducto()) +"'");
+            
+           
+        
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+        
+            try{
+            
+            stmt.close();
+            this.desconectar();
+                
+        }catch(Exception e){
+            e.printStackTrace();
+        
+        }
+      
+        }        
     }
 
     @Override

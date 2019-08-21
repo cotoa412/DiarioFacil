@@ -8,7 +8,9 @@ package com.ulatina.clasesDiarioFacil;
 import com.ulatina.clasesDiarioFacil.Email.Email;
 import com.ulatina.diarioFacil.DAO.ServicioPedido;
 import com.ulatina.diarioFacil.DAO.Servicio_Producto;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -20,7 +22,8 @@ public class MenuAdmin implements iMenu,iAdministrador{
     
     private iSistema sistema;
     private Scanner lector = new Scanner(System.in);
-    StringBuffer productos = new StringBuffer(); 
+    StringBuffer productos = new StringBuffer();
+    StringBuffer promociones = new StringBuffer();
     
     public MenuAdmin(){
     
@@ -312,28 +315,33 @@ public class MenuAdmin implements iMenu,iAdministrador{
     @Override
     public void agregarPromocion(String nombre) {
         Servicio_Producto sp=new Servicio_Producto();
+                Producto p=new Producto();        
        int opc=0;
+       double nuevoprecio=0;
         System.out.println("1.Agregar promocion VIP.");
         System.out.println("2.Agregar promocion normal.");
         opc = lector.nextInt();
        switch(opc){
            case 1: for(Object obj:sp.selectAll()){
-                   if (nombre==((Producto)obj).getNombreProducto()){
+                   if (nombre.equalsIgnoreCase(((Producto)obj).getNombreProducto())){
+                   p=((Producto)obj);
                    Promocion promo = new PromocionFeature(new PromocionDescuento());
-                   double nuevoprecio = promo.descuentoVIP()*((Producto)obj).getPrecioProducto();                  
-                   productos.append("--------------------------------");
-                   productos.append(nombre);
-                   productos.append(nuevoprecio);
+                   nuevoprecio = promo.descuento2()*((Producto)obj).getPrecioProducto();
+                   p.setPrecioProducto(nuevoprecio);
+                   sp.update(p);
+                       System.out.println("Se ha creado la promocion, el nuevo precio del producto "+nombre+" es: "+nuevoprecio);
+                       promociones.append(p);
                    }
                    }
                    break;
            case 2: for(Object obj:sp.selectAll()){
-                   if (nombre==((Producto)obj).getNombreProducto()){
+                   if (nombre.equalsIgnoreCase(((Producto)obj).getNombreProducto())){
                    Promocion promo = new PromocionFeature(new PromocionDescuento());
-                   double nuevoprecio = promo.descuento()*((Producto)obj).getPrecioProducto();                  
-                   productos.append("--------------------------------");
-                   productos.append(nombre);
-                   productos.append(nuevoprecio);
+                   nuevoprecio = promo.descuento()*((Producto)obj).getPrecioProducto();
+                   p.setPrecioProducto(nuevoprecio);
+                   sp.update(p);
+                       System.out.println("Se ha creado la promocion, el nuevo precio del producto "+nombre+" es: "+nuevoprecio);                   
+                       promociones.append(p);
                    }
                    }
                    break;        
@@ -342,7 +350,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
 
     @Override
     public String verPromociones() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return promociones.toString();
     }
 
     @Override

@@ -12,8 +12,8 @@ package com.ulatina.clasesDiarioFacil;
 public class PromocionDescuento implements Promocion {
 
     @Override
-    public double descuentoVIP() {
-        return 0.00;
+    public double descuento2() {
+        return 0.85;
     }
 
     @Override

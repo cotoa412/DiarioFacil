@@ -20,7 +20,8 @@ public interface iAdministrador {
     public String verListaCategorias();
     
     //Creacion de combos
-    public void agregarCombo();
+    public String verListaCombos();
+    public void agregarCombo(String combo);
     public void quitarCombo();
     
     //Pedidos

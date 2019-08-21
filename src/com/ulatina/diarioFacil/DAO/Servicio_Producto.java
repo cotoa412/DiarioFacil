@@ -122,6 +122,32 @@ public class Servicio_Producto extends Servicio implements InterfaceDAO {
         }
     }
     
+    public void updateStock(Producto producto,int resta){
+        
+        Statement stmt = null;
+        
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+      
+            stmt = conn.createStatement();
+            
+            stmt.executeUpdate("update producto set cantidad='" + (producto.getCantidad()-resta) +"' WHERE idProducto='"+producto.getCodigoProducto()+"'");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Ha pasado un error.");
+        } finally {
+            try {
+                stmt.close();
+                super.desconectar();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    
+    }
+    
     @Override
     public void update(Object obj) {
         Statement stmt = null;      

@@ -15,6 +15,7 @@ public class Cliente extends Usuario{
     private String correo = "";
     private String tipoCliente = "";
     private int usuario = 0 ;
+    private Carrito carrito = new Carrito();
     
     public Cliente(){
         
@@ -85,6 +86,14 @@ public class Cliente extends Usuario{
 
     public void setUsuario(int usuario) {
         this.usuario = usuario;
+    }
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
     
     @Override

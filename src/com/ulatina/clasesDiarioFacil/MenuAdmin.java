@@ -56,7 +56,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
             case 2: this.opcionesProveedores();
                 break;
-            case 3: System.out.println("Opciones de combos.");
+            case 3: this.opcionesDeCombos();
                 break;    
             case 4: this.opcionesDePedidos();
                 break;    
@@ -263,6 +263,33 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         }while(op != 3);
     }
+    
+    public void opcionesDeCombos(){
+        int op = 0;
+        
+        do{
+        
+        System.out.println("1.Ver lista de Combos.");
+        System.out.println("2.Agregar nuevo combo.");
+        System.out.println("3.Atras");
+        
+        op = lector.nextInt();
+       
+        switch(op){
+        
+            case 1: System.out.println(this.verListaCombos());
+                break;
+            case 2: 
+                String combo = JOptionPane.showInputDialog("Elija el combo.\nHalloween\nValentin\nNavidad");
+                this.agregarCombo(combo);
+            case 3: 
+                break;
+            default: System.out.println("La opción no es valida.");
+            
+        }
+        
+        }while(op != 3);
+    }
 
     @Override
     public String verProductos() {
@@ -285,9 +312,14 @@ public class MenuAdmin implements iMenu,iAdministrador{
         return sistema.verCategorias();
     }
 
+   @Override
+    public String verListaCombos(){
+        return sistema.verCombos();
+    }
+
     @Override
-    public void agregarCombo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void agregarCombo(String combo) {
+        sistema.nuevoCombo(combo);
     }
 
     @Override

@@ -12,9 +12,9 @@ package com.ulatina.clasesDiarioFacil;
 public interface iUsuario {
     
     public String verListaProductos();
-    public void verCombos();
-    public void verCarritoCompras();
+    public String verCombos();
+    public Carrito verCarritoCompras();
     public void cambiarContrasenna(Cliente cliente);
-    
+    public void agregarAlCarrito(String nombreProducto,int cantidad);
     
 }

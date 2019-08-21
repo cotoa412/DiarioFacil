@@ -6,6 +6,7 @@
 package com.ulatina.clasesDiarioFacil;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,12 +43,30 @@ public class MenuCliente implements iMenu,iUsuario{
         
         switch(opc){
         
-            case 1: System.out.println(this.verListaProductos());
+            case 1: 
+                    System.out.println(this.verListaProductos());
+                    System.out.println("\nDesea agregar al carrito.");
+                    String sino = lector.next();
+                    
+                    if (sino.equalsIgnoreCase("si")) {
+                        
+                        this.agregarAlCarrito(JOptionPane.showInputDialog("Nombre Producto"),Integer.parseInt(JOptionPane.showInputDialog("cantidad")));
+                        if (this.verCarritoCompras().getProductosEnCarrito().size() > 0) {
+                            System.out.println("Se agrego su producto al carrito.\n");
+                        }else {
+                            System.out.println("El carrtio esta vacio.");
+                        }
+                    }
                 break;
-        
-            case 2: System.out.println("Lista de combos.");
+            case 2: 
+                System.out.println(this.verCombos());
                 break;
-            case 3: System.out.println("Carrito de compra.");
+            case 3: 
+                if (this.verCarritoCompras().getProductosEnCarrito().size() > 0) {
+                    System.out.println(this.verCarritoCompras());
+                }else {
+                    System.out.println("El carrtio esta vacio.");
+                }
                 break;    
             case 4: System.out.println("Cambiar contrasenna.");
                 break;    
@@ -103,13 +122,13 @@ public class MenuCliente implements iMenu,iUsuario{
     }
 
     @Override
-    public void verCombos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String verCombos() {
+        return sistema.verCombos();
     }
 
     @Override
-    public void verCarritoCompras() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Carrito verCarritoCompras() {
+        return sistema.verCarrito();
     }
 
     @Override
@@ -121,4 +140,10 @@ public class MenuCliente implements iMenu,iUsuario{
         this.sistema = sistema;
     }
     
+     @Override
+    public void agregarAlCarrito(String nombreProducto, int cantidad) {
+        sistema.agregarProductoCarrito(nombreProducto, cantidad);
+    }
+    
+      
 }

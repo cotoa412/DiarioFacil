@@ -23,8 +23,10 @@ public interface iSistema {
     public void actualizarCliente(String cliente,String correo);
     public void guardarProveedor(Proveedor proveedor);
     public String mostrarListaProveedores();
-    public void nuevoCombo();
     public String verCombos();
+    public void nuevoCombo(String combo);
+    public void agregarProductoCarrito(String nombreProducto,int cantidad);
+    public Carrito verCarrito();
     
     
 }

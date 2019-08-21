@@ -10,6 +10,9 @@ import com.ulatina.diarioFacil.DAO.ServicioCliente;
 import com.ulatina.diarioFacil.DAO.ServicioProveedor;
 import com.ulatina.diarioFacil.DAO.Servicio_Categoria;
 import com.ulatina.diarioFacil.DAO.Servicio_Producto;
+import com.ulatina.diarioFacil.patronFabrica.CrearCombo;
+import com.ulatina.diarioFacil.patronFabrica.Fabrica;
+import com.ulatina.diarioFacil.patronFabrica.ICombo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,6 +29,16 @@ public class Sistema implements iSistema{
     private ServicioProveedor servicioProveedor;
     private Servicio_Producto sp;
     private Servicio_Categoria sc;
+    private List<ICombo> listaCombos = new ArrayList<>();
+    private Cliente clienteIngresado = new Cliente();
+
+    public List<ICombo> getListaCombos() {
+        return listaCombos;
+    }
+
+    public void setListaCombos(List<ICombo> listaCombos) {
+        this.listaCombos = listaCombos;
+    }
     
     @Override
     public void registrar(Cliente usuario) {
@@ -220,13 +233,52 @@ public class Sistema implements iSistema{
     }
 
     @Override
-    public void nuevoCombo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void nuevoCombo(String combo) {
+        Fabrica fabrica = new CrearCombo(combo);
+        listaCombos.add(fabrica.getCombo());
     }
 
     @Override
     public String verCombos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        StringBuffer sb = new StringBuffer();
+        
+        for (ICombo combo : this.getListaCombos()) {
+            sb.append(combo);
+            sb.append("\n");
+        }
+        return sb.toString();   
+    }
+    
+    @Override
+    public void agregarProductoCarrito(String nombreProducto,int cantidad){
+           
+        Producto p = new Producto();
+        
+        this.sp = new Servicio_Producto();
+        
+        for (Object obj : sp.selectAll()) {
+            
+            if (((Producto)obj).getNombreProducto().equalsIgnoreCase(nombreProducto)) {
+                
+                p = (Producto)obj;
+                
+            }
+            
+        }
+        
+        sp.updateStock(p, cantidad);
+        
+        p.setCantidad(cantidad);
+        
+        this.clienteIngresado.getCarrito().setProductosEnCarrito(p);
+       
+    }
+    
+    @Override
+    public Carrito verCarrito(){
+        
+        return this.clienteIngresado.getCarrito();
     }
     
     

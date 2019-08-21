@@ -14,11 +14,9 @@ import java.util.List;
  * @author Personal
  */
 public class Orden {
-    private int numeroOrden;
-    private Cliente cliente;
-    private Date fecha = new Date();
+    
+    private Factura fact = new Factura();
     private List<Producto> productos = new ArrayList<>();
-    private double totalAPagar;
     private double pagaCon;
     private double cambio;
     private String piePagina;
@@ -29,51 +27,21 @@ public class Orden {
     
     
     
-    public Orden(int numeroOrden,Cliente object,Date fecha,Producto producto,double pagaCon){
+    public Orden(Factura fact,Producto producto,double pagaCon){
+        
+       this.fact = fact; 
+       this.agregarProducto(producto);
+       this.pagaCon = pagaCon;
+         
+    }
+    
+    public Orden(Factura fact,double pagaCon){
         
        
-        this.numeroOrden = numeroOrden;
-        this.cliente = object;
-        this.fecha = fecha;
-        this.agregarProducto(producto);
+        this.fact = fact;
         this.pagaCon = pagaCon;
         
         
-    }
-    
-    public Orden(int numeroOrden,Cliente object,Date fecha,double pagaCon){
-        
-       
-        this.numeroOrden = numeroOrden;
-        this.cliente = object;
-        this.fecha = fecha;
-        this.pagaCon = pagaCon;
-        
-        
-    }
-    
-    public int getNumeroOrden(){
-        return this.numeroOrden;
-    }
-    
-    public void setNumeroOrden(int numeroOrden){
-        this.numeroOrden = numeroOrden;
-    }
-    
-    public Object getCliente(){
-        return this.cliente;
-    }
-    
-    public void setCliente(Cliente cliente){
-        this.cliente = cliente;
-    }
-    
-    public Date getFecha(){
-        return this.fecha;
-    }
-    
-    public void setFecha(Date fecha){
-        this.fecha = fecha;
     }
     
    public List<Producto> getProductos(){
@@ -83,19 +51,7 @@ public class Orden {
     public void agregarProducto(Producto producto){
         this.productos.add(producto);
     }
-    
-    public double getTotalAPagar(){
-        return this.totalAPagar;
-    }
-    
-    public void setTotalAPagar(){
-        
-        for(Producto p: productos){
-            this.totalAPagar += p.getPrecioProducto();
-        }
-        
-    }
-    
+     
     public double getPagaCon(){
         return this.pagaCon;
     }
@@ -106,10 +62,6 @@ public class Orden {
     
     public double getCambio(){
         return this.cambio;
-    }
-    
-    public void setCambio(){
-        this.cambio = this.pagaCon - this.totalAPagar;
     }
     
     public String getPiePagina(){

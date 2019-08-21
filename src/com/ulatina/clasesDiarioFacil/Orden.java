@@ -41,6 +41,17 @@ public class Orden {
         
     }
     
+    public Orden(int numeroOrden,Cliente object,Date fecha,double pagaCon){
+        
+       
+        this.numeroOrden = numeroOrden;
+        this.cliente = object;
+        this.fecha = fecha;
+        this.pagaCon = pagaCon;
+        
+        
+    }
+    
     public int getNumeroOrden(){
         return this.numeroOrden;
     }

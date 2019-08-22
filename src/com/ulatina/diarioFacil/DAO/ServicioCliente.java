@@ -6,6 +6,7 @@
 package com.ulatina.diarioFacil.DAO;
 
 import com.ulatina.clasesDiarioFacil.Cliente;
+import com.ulatina.clasesDiarioFacil.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -130,6 +131,27 @@ public class ServicioCliente extends Servicio implements InterfaceDAO {
             }
         }         
     }
+    public void updateContra(Object obj){
+        Statement stmt = null;
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+      
+            stmt = conn.createStatement();
+            stmt.executeUpdate("update usuario set contrasenna='" + (((Cliente)obj).getContrasenna()) +"' WHERE idUsuario='"+((Usuario)obj).getIdUsuario()+"'");
+            System.out.println("Contraseña actualizada correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Ha pasado un error.");
+        } finally {
+            try {
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }        
+    }    
 
     @Override
     public void delete(Object obj) {

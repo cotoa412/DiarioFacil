@@ -150,7 +150,7 @@ public class Producto implements Sujeto{
 
     @Override
     public void notificarObservadores() {
-        this.provedores.forEach(provedor -> provedor.actualizar());
+        this.provedores.forEach(provedor -> provedor.actualizar(this.getNombreProducto(), this.getPrecioProducto(), 15));
     }
 
 }

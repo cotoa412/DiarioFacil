@@ -45,6 +45,8 @@ public class Navidad implements ICombo {
             
             sb.append("\n");
         }
+         sb.append("Cantidad: ");
+         sb.append("5\n");
          sb.append("Precio: ");
          sb.append(this.getPrecio());
          return sb.toString();

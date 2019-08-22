@@ -5,6 +5,9 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.diarioFacil.patronFabrica.CrearCombo;
+import com.ulatina.diarioFacil.patronFabrica.Fabrica;
+import com.ulatina.diarioFacil.patronFabrica.ICombo;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -60,6 +63,17 @@ public class MenuCliente implements iMenu,iUsuario{
                 break;
             case 2: 
                 System.out.println(this.verCombos());
+                System.out.println("Desea agregar al carrito.?");
+                String sin = lector.next();
+                
+                if (sin.equalsIgnoreCase("si")) {
+                    
+                    
+                    
+                    String combo = JOptionPane.showInputDialog("Nombre del combo.");
+                    this.agregarComboCarrito(combo);  
+                }
+                
                 break;
             case 3: 
                 if (this.verCarritoCompras().getProductosEnCarrito().size() > 0) {
@@ -75,7 +89,7 @@ public class MenuCliente implements iMenu,iUsuario{
                     System.out.println("El carrtio esta vacio.");
                 }
                 break;    
-            case 4: System.out.println("Cambiar contrasenna.");
+            case 4: sistema.cambiarContra();
                 break;    
             case 5: this.menuReporteCliente();
                 break;
@@ -150,6 +164,10 @@ public class MenuCliente implements iMenu,iUsuario{
      @Override
     public void agregarAlCarrito(String nombreProducto, int cantidad) {
         sistema.agregarProductoCarrito(nombreProducto, cantidad);
+    }
+    
+    public void agregarComboCarrito(String combo){
+        sistema.agregarComboCarrito(combo);
     }
     
     public void facturar(){

@@ -132,11 +132,9 @@ public class Orden {
       
       System.out.println(fact.getFecha());
       sb.append("\n*******************************************************************************************\n");
+      sb.append("\n");
       sb.append("Total: " + this.getTotal());
       sb.append("\n");
-      sb.append("Paga Con:" + this.getPagaCon());
-      sb.append("\n");
-      sb.append("Cambio: " + this.getCambio());
       sb.append("\n*******************************************************************************************\n");
       sb.append(this.getPiePagina());
             

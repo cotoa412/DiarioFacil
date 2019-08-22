@@ -14,6 +14,6 @@ import java.util.Date;
  */
 public interface Observador {
     
-    public void actualizar();
+    public void actualizar(String nombre, double precio, int cantidad);
     
 }

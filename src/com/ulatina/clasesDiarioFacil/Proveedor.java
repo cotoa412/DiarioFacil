@@ -77,9 +77,9 @@ public class Proveedor implements Observador {
     }
 
     @Override
-    public void actualizar() {
+    public void actualizar(String nombre, double precio, int cantidad) {
         Email pedido = new Email();
-        pedido.pedidoAutomatico(this.getCorreoProveedor());
+        pedido.pedidoAutomatico("alejandromurillogutierrez@gmail.com", nombre, precio, cantidad);
     }
     
 }

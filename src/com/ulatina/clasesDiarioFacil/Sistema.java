@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -275,6 +276,10 @@ public class Sistema implements iSistema{
         
         p.setCantidad(cantidad);
         
+        if(cantidad>=5){
+            this.clienteIngresado.setTipoCliente("VIP");
+        }
+        
         this.clienteIngresado.getCarrito().setProductosEnCarrito(p);
        
     }
@@ -341,6 +346,37 @@ public class Sistema implements iSistema{
         
         return sb.toString();
     
+    }
+    @Override
+    public void cambiarContra(){
+        String contra = JOptionPane.showInputDialog("Ingrese su nueva contraseña:");
+        this.clienteIngresado.setContrasenna(contra);
+        servicioCliente.updateContra(this.clienteIngresado);
+    }    
+
+    @Override
+    public void agregarComboCarrito(String combo) {
+        
+        ICombo co;
+        
+        for (ICombo c : this.getListaCombos()) {
+            if (combo.equalsIgnoreCase(c.getClass().getSimpleName())) {
+                
+                for (Producto p : c.getlistaDeProductos()) {
+            
+                this.clienteIngresado.getCarrito().setProductosEnCarrito(p);
+                co = c;
+                
+                }
+                
+            }
+        }
+        
+        
+        
+        
+        System.out.println("Su combo "+combo.getClass().getSimpleName()+" se agrego al carrito.");
+        
     }
     
 }

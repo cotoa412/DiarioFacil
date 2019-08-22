@@ -5,6 +5,7 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import com.ulatina.diarioFacil.patronFabrica.ICombo;
 import java.util.List;
 
 /**
@@ -26,10 +27,12 @@ public interface iSistema {
     public String verCombos();
     public void nuevoCombo(String combo);
     public void agregarProductoCarrito(String nombreProducto,int cantidad);
+    public void agregarComboCarrito(String combo);
     public Carrito verCarrito();
     public void insertarOrden();
     public Cliente agarrarClienteIngresado();
     public void realizarCompra();
+    public void cambiarContra();
     public String verOrdenes();
     
     

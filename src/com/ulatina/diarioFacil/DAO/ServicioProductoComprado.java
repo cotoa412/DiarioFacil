@@ -166,7 +166,8 @@ public class ServicioProductoComprado extends Servicio implements InterfaceDAO {
         
     
     }
-
+    
+  
     @Override
     public void insert(Object obj) {
         Statement stmt = null;

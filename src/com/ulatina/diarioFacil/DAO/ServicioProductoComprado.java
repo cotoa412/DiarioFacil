@@ -7,6 +7,7 @@ package com.ulatina.diarioFacil.DAO;
 
 
 import com.ulatina.clasesDiarioFacil.Categoria;
+import com.ulatina.clasesDiarioFacil.Cliente;
 import com.ulatina.clasesDiarioFacil.Factura;
 import com.ulatina.clasesDiarioFacil.Orden;
 import com.ulatina.clasesDiarioFacil.Producto;
@@ -164,6 +165,112 @@ public class ServicioProductoComprado extends Servicio implements InterfaceDAO {
             }
         }
         
+    
+    }
+    
+    public List<Orden> historialDeCliente(Cliente cliente) {
+        
+        ResultSet rs = null;
+        Statement stmt = null;
+        List<Orden> oList = new ArrayList<>();
+        ServicioFactura sf = new ServicioFactura();
+        Factura f = new Factura();
+        
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+           
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT numeroFactura FROM Factura fa,cliente cl WHERE fa.cliente='"+cliente.getCedulaCliente()+"'";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            while (rs.next()) {
+                //Retrieve by column name
+                int numeroFactura = rs.getInt("numeroFactura");
+                
+                for (Object fac : sf.selectAll()) {
+                    if (numeroFactura == ((Factura)fac).getNumeroOrden()) {
+                        f = ((Factura)fac);
+                    }
+                }
+                
+                List<Producto> productos = this.historialCliente(cliente);
+                
+                Orden o = new Orden ();
+                o.setFact(f);
+                
+                for (Producto pr : productos) {
+                    o.agregarProducto(pr);
+                }
+                
+                oList.add(o);
+          
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return oList;
+    }
+    
+    public List<Producto> historialCliente(Cliente cliente){
+    
+        ResultSet rs = null;
+        Statement stmt = null;
+        List<Producto> oList = new ArrayList<>();
+        Servicio_Categoria sc = new Servicio_Categoria();
+        Categoria ca = new Categoria();
+        try {
+            //STEP 3: Execute a querey
+            super.conectar();
+           
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM producto pr,facturaclienteproducto fc,cliente cl WHERE pr.idProducto=fc.productoComprado AND cl.cedulaCliente='"+cliente.getCedulaCliente()+"'";
+            rs = stmt.executeQuery(sql);
+            //STEP 3.1: Extract data from result set
+            while (rs.next()) {
+                //Retrieve by column name
+                
+                int idProducto = rs.getInt("idProducto");
+                String nombreProducto = rs.getString("nombreProducto");
+                Date fecha = rs.getDate("fechaVencimiento");
+                double valor = rs.getDouble("valor");
+                int cantidad = rs.getInt("cantidad");
+                int categoria = rs.getInt("categoria");
+              
+                for (Object obj : sc.selectAll()) {
+                    if (categoria == ((Categoria)obj).getIdCategoria()) {
+                        ca = (Categoria)obj;
+                    }
+                }
+                
+                Producto p = new Producto(idProducto,nombreProducto,fecha,valor,cantidad,ca);
+                oList.add(p);
+                        
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        return oList;
     
     }
     

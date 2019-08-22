@@ -212,8 +212,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         System.out.println("1.Ver lista de proveedores.");
         System.out.println("2.Agregar un nuevo proveedor.");
-        System.out.println("3.Actualizar un nuevo proveedor.");
-        System.out.println("4.Atras.");
+        System.out.println("3.Atras.");
         op = lector.nextInt();
        
         switch(op){
@@ -234,7 +233,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
             
         }
         
-        }while(op != 4);
+        }while(op != 3);
     }
     
     public void opcionesDePedidos(){
@@ -350,10 +349,6 @@ public class MenuAdmin implements iMenu,iAdministrador{
         sistema.nuevoCombo(combo);
     }
 
-    @Override
-    public void quitarCombo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public String verListaPedidos() {
@@ -435,10 +430,6 @@ public class MenuAdmin implements iMenu,iAdministrador{
         System.out.println("Se actualizaron los datos con exito.");
     }
 
-    @Override
-    public void eliminarCliente(String nombreCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public String verListaProveedores() {
@@ -450,17 +441,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
         sistema.guardarProveedor(proveedor);
         System.out.println("Se agrego correctamente");
     }
-
-    @Override
-    public void actualizarProveedor(String proveedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminarProveedor(String proveedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public String verListaFacturas() {
         return sistema.verOrdenes();

@@ -378,6 +378,21 @@ public class Sistema implements iSistema{
         System.out.println("Su combo "+combo.getClass().getSimpleName()+" se agrego al carrito.");
         
     }
+
+    @Override
+    public String verHistorial() {
+        StringBuffer sb = new StringBuffer();
+        ServicioProductoComprado sfc = new ServicioProductoComprado();
+        
+        List<Orden> retorno = sfc.historialDeCliente(this.clienteIngresado);
+        
+        for (Orden o : retorno) {
+            sb.append(o +"\n");
+        }
+        return sb.toString();
+    }
+    
+    
     
 }
 

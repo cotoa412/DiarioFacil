@@ -112,30 +112,29 @@ public class MenuCliente implements iMenu,iUsuario{
         
         System.out.println("----------------------------------------------------");    
         System.out.println("1.Ver historial de órdenes.");
-        System.out.println("2.Ver última orden.");
-        System.out.println("3.Ver productos más consumidos.");
-        System.out.println("4.Atrás.");
+        System.out.println("2.Atrás.");
         System.out.println("----------------------------------------------------");
         op = lector.nextInt();
         
         switch(op){
         
-            case 1: 
+            case 1: System.out.println(sistema.verHistorial());
                 break;
         
             case 2: 
                 break;
-            case 3: 
-                break;    
-            case 4: 
-                break;
+         
             default: System.out.println("La opción no es valida.");
                 break;
         }
-        
-        }while(op != 4);
+        }while(op != 2);
     
     }
+    
+    public void setMediador(iSistema sistema){
+        this.sistema = sistema;
+    }
+    
 
     @Override
     public String verListaProductos() {
@@ -157,9 +156,6 @@ public class MenuCliente implements iMenu,iUsuario{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void setMediador(iSistema sistema){
-        this.sistema = sistema;
-    }
     
      @Override
     public void agregarAlCarrito(String nombreProducto, int cantidad) {

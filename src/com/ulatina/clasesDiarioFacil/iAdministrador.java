@@ -22,7 +22,6 @@ public interface iAdministrador {
     //Creacion de combos
     public String verListaCombos();
     public void agregarCombo(String combo);
-    public void quitarCombo();
     
     //Pedidos
     public String verListaPedidos();
@@ -36,14 +35,11 @@ public interface iAdministrador {
     public String verListaClientes();
     public void agregarCliente(Cliente cliente);
     public void actualizarCliente(String cliente,String correo);
-    public void eliminarCliente(String nombreCliente);
     
     //Mantenimiento de provedores
     public String verListaProveedores();
     public void agregarProveedor(Proveedor proveedor);
-    public void actualizarProveedor(String proveedor);
-    public void eliminarProveedor(String proveedor); 
-    
+
     
     //Ordenes o facturas
     public String verListaFacturas();

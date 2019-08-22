@@ -34,6 +34,7 @@ public interface iSistema {
     public void realizarCompra();
     public void cambiarContra();
     public String verOrdenes();
+    public String verHistorial();
     
     
 }

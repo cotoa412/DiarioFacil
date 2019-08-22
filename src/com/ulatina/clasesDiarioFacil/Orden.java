@@ -5,6 +5,7 @@
  */
 package com.ulatina.clasesDiarioFacil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Orden {
     
     private Factura fact = new Factura();
     private List<Producto> productos = new ArrayList<>();
+    private double total;
     private double pagaCon;
     private double cambio;
     private String piePagina;
@@ -27,13 +29,23 @@ public class Orden {
     
     
     
-    public Orden(Factura fact,Producto producto,double pagaCon){
+    public Orden(Factura fact,Producto producto){
         
        this.fact = fact; 
        this.agregarProducto(producto);
-       this.pagaCon = pagaCon;
+  
          
     }
+
+    public Factura getFact() {
+        return fact;
+    }
+
+    public void setFact(Factura fact) {
+        this.fact = fact;
+    }
+    
+    
     
     public Orden(Factura fact,double pagaCon){
         
@@ -53,6 +65,7 @@ public class Orden {
     }
      
     public double getPagaCon(){
+        this.pagaCon = 10000;
         return this.pagaCon;
     }
     
@@ -61,12 +74,15 @@ public class Orden {
     }
     
     public double getCambio(){
+        
+        this.cambio = this.getPagaCon() - this.getTotal();
+        
         return this.cambio;
     }
     
     public String getPiePagina(){
 
-            this.piePagina = "Gracias por su compra.";
+        this.piePagina = "Gracias por su compra.";
         
         return this.piePagina;
     }
@@ -75,6 +91,19 @@ public class Orden {
         this.piePagina = piePagina;
     }
 
+    public double getTotal() {
+        for (Producto p : this.getProductos()) {
+            this.total += p.getCantidad()*p.getPrecioProducto();
+        }
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    
+    
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
@@ -82,27 +111,29 @@ public class Orden {
    
         
       public String toString(){
-      StringBuffer sb = new StringBuffer();
-      Sistema s= new Sistema();
-      Carrito c=new Carrito();
-      cliente=s.agarrarClienteIngresado();
+      
+        StringBuffer sb = new StringBuffer();
+      
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YY");
       
       
-     
       sb.append("\n*******************************************************************************************\n");
-      sb.append("No.Orden: " + this.getNumeroOrden());
+      sb.append("No.Orden: " + this.getFact().getNumeroOrden());
       sb.append("\n");
-      sb.append(cliente.getCedulaCliente());
-      sb.append(cliente.getNombreCliente());
-      sb.append("Fecha:\t" + this.getFecha());
+      sb.append("Cedula: " + ((Cliente)this.getFact().getCliente()).getCedulaCliente());
+      sb.append("\n");
+      sb.append("Nombre: " + ((Cliente)this.getFact().getCliente()).getNombreCliente());
+      sb.append("\nFecha:\t" + formato.format(this.getFact().getFecha()));
+      
       sb.append("\n*******************************************************************************************\n");
-      sb.append("#P.\tUnidades\tProducto\tPrecio\t\t\t\t\tValor Total");
-      sb.append("\n*******************************************************************************************\n");
-      for (Producto p : c.getProductosEnCarrito()) {
+      for (Producto p : this.getProductos()) {
               sb.append(p + "\n");
-          }
+      }
+      
+      
+      System.out.println(fact.getFecha());
       sb.append("\n*******************************************************************************************\n");
-      sb.append("Total: " + c.getPrecioTotalCarrito());
+      sb.append("Total: " + this.getTotal());
       sb.append("\n");
       sb.append("Paga Con:" + this.getPagaCon());
       sb.append("\n");

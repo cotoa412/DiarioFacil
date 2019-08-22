@@ -5,9 +5,14 @@
  */
 package com.ulatina.diarioFacil.DAO;
 
-import com.ulatina.clasesDiarioFacil.Administrador;
+import com.ulatina.clasesDiarioFacil.Categoria;
 import com.ulatina.clasesDiarioFacil.Cliente;
-import com.ulatina.clasesDiarioFacil.Usuario;
+import com.ulatina.clasesDiarioFacil.Factura;
+import com.ulatina.clasesDiarioFacil.Orden;
+import com.ulatina.clasesDiarioFacil.Producto;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -20,9 +25,14 @@ public class NewMain {
      */
     public static void main(String[] args) {
        
+        
+     
+        
        
         
-   
+        
+        
+        
         
     }
     

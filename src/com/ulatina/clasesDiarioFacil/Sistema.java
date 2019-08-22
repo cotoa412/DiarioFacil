@@ -7,6 +7,8 @@ package com.ulatina.clasesDiarioFacil;
 
 import com.ulatina.diarioFacil.DAO.ServicioAdministrador;
 import com.ulatina.diarioFacil.DAO.ServicioCliente;
+import com.ulatina.diarioFacil.DAO.ServicioFactura;
+import com.ulatina.diarioFacil.DAO.ServicioProductoComprado;
 import com.ulatina.diarioFacil.DAO.ServicioProveedor;
 import com.ulatina.diarioFacil.DAO.Servicio_Categoria;
 import com.ulatina.diarioFacil.DAO.Servicio_Producto;
@@ -14,6 +16,7 @@ import com.ulatina.diarioFacil.patronFabrica.CrearCombo;
 import com.ulatina.diarioFacil.patronFabrica.Fabrica;
 import com.ulatina.diarioFacil.patronFabrica.ICombo;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -293,9 +296,52 @@ public class Sistema implements iSistema{
        return this.clienteIngresado; 
     }
     
+    @Override
+    public void realizarCompra(){
+        
+        ServicioFactura sf = new ServicioFactura();
+        ServicioProductoComprado sfc = new ServicioProductoComprado(); 
+        
+        Orden orden = new Orden();
+        
+        Factura factura = new Factura(this.clienteIngresado,new Date());
+        sf.insert(factura);
+        
+        for (Object o : sf.selectAll()) {
+            factura = ((Factura)o);
+        }
+        
+        orden.setFact(factura);
+        
+        for (Producto p : this.clienteIngresado.getCarrito().getProductosEnCarrito()) {
+            orden.agregarProducto(p);
+            sfc.productoEnOrden(factura.getNumeroOrden(),p.getCodigoProducto(),p.getCantidad());
+        }
+        
+        this.clienteIngresado.getCarrito().setPrecioTotalCarrito(0);
+        this.clienteIngresado.getCarrito().getProductosEnCarrito().clear();
+        
+        System.out.println("Compra realizada");
+        System.out.println(orden);
     
+    }
     
+    @Override
+    public String verOrdenes(){
+        StringBuffer sb = new StringBuffer();
+        ServicioProductoComprado sfc = new ServicioProductoComprado();
+         
+        List<Object> o = sfc.selectAll();
+       
+        for (Object obj : o ) {
+            sb.append(((Orden)obj));
+            sb.append("\n");
+        }
+        
+        
+        return sb.toString();
     
+    }
     
 }
 

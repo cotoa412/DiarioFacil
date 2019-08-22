@@ -29,7 +29,6 @@ public class Tester {
        Sistema sist = new Sistema();       
        sist.validarUsuario(sist);
       
-      
     }
     
 }

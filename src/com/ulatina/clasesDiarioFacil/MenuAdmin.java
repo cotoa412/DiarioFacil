@@ -64,7 +64,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
                 break;
             case 6: this.opcionesClientes();
                 break;
-            case 7: System.out.println("Ordenes.");
+            case 7: this.opcionesOrdenes();
                 break;
             case 8: System.out.println("Gracias.");
                 break;   
@@ -290,6 +290,34 @@ public class MenuAdmin implements iMenu,iAdministrador{
         
         }while(op != 3);
     }
+    
+    public void opcionesOrdenes(){
+        int op = 0;
+        
+        do{
+        
+        System.out.println("1.Ver lista de Ordenes.");
+        System.out.println("2.Buscar Ordenes por fecha.");
+        System.out.println("3.Atras.");
+        
+        op = lector.nextInt();
+       
+        switch(op){
+        
+            case 1: 
+                    System.out.println(this.verListaFacturas());
+                break;
+            case 2: 
+                String combo = JOptionPane.showInputDialog("Elija el combo.\nHalloween\nValentin\nNavidad");
+                this.agregarCombo(combo);
+            case 3: 
+                break;
+            default: System.out.println("La opción no es valida.");
+            
+        }
+        
+        }while(op != 3);
+    }
 
     @Override
     public String verProductos() {
@@ -435,7 +463,7 @@ public class MenuAdmin implements iMenu,iAdministrador{
 
     @Override
     public String verListaFacturas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sistema.verOrdenes();
     }
 
     @Override

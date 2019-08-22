@@ -64,6 +64,13 @@ public class MenuCliente implements iMenu,iUsuario{
             case 3: 
                 if (this.verCarritoCompras().getProductosEnCarrito().size() > 0) {
                     System.out.println(this.verCarritoCompras());
+                    System.out.println("Desee facturar");
+                    String si = lector.next();
+                    
+                    if (si.equalsIgnoreCase("si")) {
+                        this.facturar();
+                    }
+                    
                 }else {
                     System.out.println("El carrtio esta vacio.");
                 }
@@ -145,5 +152,8 @@ public class MenuCliente implements iMenu,iUsuario{
         sistema.agregarProductoCarrito(nombreProducto, cantidad);
     }
     
+    public void facturar(){
+        sistema.realizarCompra();
+    }
       
 }

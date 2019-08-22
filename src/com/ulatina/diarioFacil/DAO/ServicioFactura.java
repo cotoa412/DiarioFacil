@@ -40,12 +40,12 @@ public class ServicioFactura extends Servicio implements InterfaceDAO {
             sql = "SELECT * FROM Factura";
             rs = stmt.executeQuery(sql);
             //STEP 3.1: Extract data from result set
+            
             while (rs.next()) {
                 //Retrieve by column name
                 int numeroFactura = rs.getInt("numeroFactura");
                 int cliente = rs.getInt("cliente");
                 Date fechaFactura = rs.getDate("fecha");
-                double totalPagar = rs.getDouble("totalPagar");
                 
                 for (Object obj : sc.selectAll()) {
                     
@@ -55,7 +55,7 @@ public class ServicioFactura extends Servicio implements InterfaceDAO {
                     
                 }
                 
-                Factura o = new Factura(numeroFactura,c,fechaFactura,totalPagar);
+                Factura o = new Factura(numeroFactura,c,fechaFactura);
                 oList.add(o);
 
             }
@@ -83,11 +83,9 @@ public class ServicioFactura extends Servicio implements InterfaceDAO {
             this.conectar();
             
             stmt = conn.createStatement();
-            String sql = "insert into Factura(cliete,fecha) VALUES('"+((Factura)obj).getCliente()+"','"+formato.format(((Factura)obj).getFecha())+"')";
+            String sql = "insert into Factura(cliente,fecha) VALUES('"+((Cliente)((Factura)obj).getCliente()).getCedulaCliente()+"','"+formato.format(((Factura)obj).getFecha())+"')";
             
             int i = stmt.executeUpdate(sql);
-            
-           
             
         }catch(Exception e){
             

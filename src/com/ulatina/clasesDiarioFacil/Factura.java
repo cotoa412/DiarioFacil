@@ -15,10 +15,8 @@ import java.util.Date;
 public class Factura {
     
     private int numeroOrden;
-    private Cliente cliente;
+    private Cliente cliente = new Cliente();
     private Date fecha = new Date();
-    private double totalPagar;
-    
     
     public Factura(){
     
@@ -26,21 +24,18 @@ public class Factura {
     
     
     
-    public Factura(int numeroOrden,Cliente object,Date fecha,double totalPagar){
+    public Factura(int numeroOrden,Cliente object,Date fecha){
         
        
         this.numeroOrden = numeroOrden;
         this.cliente = object;
         this.fecha = fecha;
-        this.totalPagar = totalPagar;
         
     }
     
-    public Factura(Cliente object,Date fecha,double totalPagar){
-        
+    public Factura(Cliente object,Date fecha){
         this.cliente = object;
         this.fecha = fecha;
-        this.totalPagar = totalPagar;
     }
     
     public int getNumeroOrden(){
@@ -66,19 +61,11 @@ public class Factura {
     public void setFecha(Date fecha){
         this.fecha = fecha;
     }
-
-    public double getTotalPagar() {
-        return totalPagar;
-    }
-
-    public void setTotalPagar(double totalPagar) {
-        this.totalPagar = totalPagar;
-    }
   
     @Override
       public String toString(){
           
-      return this.getNumeroOrden() + " " + this.getCliente() + " " + this.getFecha() + " " + this.getTotalPagar();      
+      return this.getNumeroOrden() + " " + this.getCliente() + " " + this.getFecha();      
       
       }
 

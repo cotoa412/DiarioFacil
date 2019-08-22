@@ -29,6 +29,8 @@ public interface iSistema {
     public Carrito verCarrito();
     public void insertarOrden();
     public Cliente agarrarClienteIngresado();
+    public void realizarCompra();
+    public String verOrdenes();
     
     
 }
